@@ -1,0 +1,48 @@
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 0 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px 0;
+}
+
+.title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.clearBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    min-height: 44px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.clearBtn:hover {
+    background: var(--border);
+    transform: scale(1.02);
+}
+
+.loadingHint {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 8px;
+    margin: 0;
+    opacity: 0.6;
+}

@@ -4,15 +4,19 @@ import { BiStar } from "react-icons/bi";
 import PokemonImage from "./PokemonImage";
 import PokemonTypeBadge from "./PokemonTypeBadge";
 import styles from "./PokemonCard.module.css";
-import { useFavorites } from "../hooks/useFavorites";
+import { useFavorites } from "../../../context/FavoritesContext";
+import { useToast } from "../../../context/useToast";
 
 const PokemonCard = memo(function PokemonCard({ pokemon }) {
     const { id, name, sprites, types } = pokemon;
     const { isFavorite, toggleFavorite } = useFavorites();
+    const toast = useToast();
 
     const handleFavorite = (e) => {
         e.preventDefault();
+        const wasFav = isFavorite(id);
         toggleFavorite(id);
+        toast(wasFav ? "Eliminado de favoritos" : "Añadido a favoritos", wasFav ? "error" : "success");
     };
 
     return (

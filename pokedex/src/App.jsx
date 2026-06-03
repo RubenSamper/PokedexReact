@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import HomePage from "./features/pokemon/pages/HomePage";
 import { FilterProvider } from "./context/FilterContext";
+import { ToastProvider } from "./context/ToastProvider";
+import { FavoritesProvider } from "./context/FavoritesContext";
 
 // Code splitting: cada página se carga solo cuando se navega a ella
 const PokemonPage = lazy(() => import("./features/pokemon/pages/PokemonPage"));
@@ -33,21 +35,25 @@ export default function App() {
     return (
         <FilterProvider>
             <BrowserRouter basename="/PokedexReact">
-                <Layout>
-                    <Suspense fallback={SUSPENSE_FALLBACK}>
-                        <Routes>
-                            <Route path="/" element={<HomePage />} />
-                            <Route path="/pokemon/:name" element={<PokemonPage />} />
-                            <Route path="/teams" element={<TeamsPage />} />
-                            <Route path="/shinies" element={<ShinyPage />} />
-                            <Route path="/items" element={<ItemsPage />} />
-                            <Route path="/items/:slug" element={<ItemGroupPage />} />
-                            <Route path="/builder" element={<TeamBuilderPage />} />
-                            <Route path="/compare" element={<ComparePage />} />
-                            <Route path="/favorites" element={<FavoritesPage />} />
-                        </Routes>
-                    </Suspense>
-                </Layout>
+                <FavoritesProvider>
+                    <ToastProvider>
+                        <Layout>
+                            <Suspense fallback={SUSPENSE_FALLBACK}>
+                                <Routes>
+                                    <Route path="/" element={<HomePage />} />
+                                    <Route path="/pokemon/:name" element={<PokemonPage />} />
+                                    <Route path="/teams" element={<TeamsPage />} />
+                                    <Route path="/shinies" element={<ShinyPage />} />
+                                    <Route path="/items" element={<ItemsPage />} />
+                                    <Route path="/items/:slug" element={<ItemGroupPage />} />
+                                    <Route path="/builder" element={<TeamBuilderPage />} />
+                                    <Route path="/compare" element={<ComparePage />} />
+                                    <Route path="/favorites" element={<FavoritesPage />} />
+                                </Routes>
+                            </Suspense>
+                        </Layout>
+                    </ToastProvider>
+                </FavoritesProvider>
             </BrowserRouter>
         </FilterProvider>
     );

@@ -1,0 +1,81 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    animation: fadeIn 0.15s ease;
+}
+
+.modal {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 1.5rem;
+    max-width: 360px;
+    width: 100%;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    animation: scaleIn 0.2s ease;
+}
+
+.message {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-primary);
+    text-align: center;
+    line-height: 1.4;
+}
+
+.actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.cancelBtn {
+    padding: 0.5rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.cancelBtn:hover {
+    background: var(--hover-bg);
+}
+
+.confirmBtn {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    background: var(--danger);
+    color: #fff;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+.confirmBtn:hover {
+    opacity: 0.85;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+}
