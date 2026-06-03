@@ -1,5 +1,19 @@
-import { lazy, Suspense } from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { lazy, Suspense, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+
+// Restaurar ruta después de redirección desde 404.html (GitHub Pages)
+function RedirectHandler({ children }) {
+    const navigate = useNavigate();
+    useEffect(() => {
+        const redirect = sessionStorage.getItem("redirect");
+        if (redirect) {
+            sessionStorage.removeItem("redirect");
+            const url = new URL(redirect);
+            navigate(url.pathname.replace(/^\/PokedexReact/, "") || "/", { replace: true });
+        }
+    }, [navigate]);
+    return children;
+}
 import Layout from "./Layout";
 import HomePage from "./features/pokemon/pages/HomePage";
 import { FilterProvider } from "./context/FilterContext";
@@ -34,27 +48,29 @@ const SUSPENSE_FALLBACK = (
 export default function App() {
     return (
         <FilterProvider>
-            <HashRouter>
+            <BrowserRouter basename="/PokedexReact">
                 <FavoritesProvider>
                     <ToastProvider>
                         <Layout>
                             <Suspense fallback={SUSPENSE_FALLBACK}>
-                                <Routes>
-                                    <Route path="/" element={<HomePage />} />
-                                    <Route path="/pokemon/:name" element={<PokemonPage />} />
-                                    <Route path="/teams" element={<TeamsPage />} />
-                                    <Route path="/shinies" element={<ShinyPage />} />
-                                    <Route path="/items" element={<ItemsPage />} />
-                                    <Route path="/items/:slug" element={<ItemGroupPage />} />
-                                    <Route path="/builder" element={<TeamBuilderPage />} />
-                                    <Route path="/compare" element={<ComparePage />} />
-                                    <Route path="/favorites" element={<FavoritesPage />} />
-                                </Routes>
+                                <RedirectHandler>
+                                    <Routes>
+                                        <Route path="/" element={<HomePage />} />
+                                        <Route path="/pokemon/:name" element={<PokemonPage />} />
+                                        <Route path="/teams" element={<TeamsPage />} />
+                                        <Route path="/shinies" element={<ShinyPage />} />
+                                        <Route path="/items" element={<ItemsPage />} />
+                                        <Route path="/items/:slug" element={<ItemGroupPage />} />
+                                        <Route path="/builder" element={<TeamBuilderPage />} />
+                                        <Route path="/compare" element={<ComparePage />} />
+                                        <Route path="/favorites" element={<FavoritesPage />} />
+                                    </Routes>
+                                </RedirectHandler>
                             </Suspense>
                         </Layout>
                     </ToastProvider>
                 </FavoritesProvider>
-            </HashRouter>
+            </BrowserRouter>
         </FilterProvider>
     );
 }

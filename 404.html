@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokédex</title>
     <script>
+        // GitHub Pages SPA fallback: guardar la ruta solicitada y redirigir al index
+        sessionStorage.setItem("redirect", location.href);
         location.replace("/PokedexReact/");
     </script>
 </head>
