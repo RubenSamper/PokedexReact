@@ -1,0 +1,208 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - button "Abrir menú de filtros" [ref=e5] [cursor=pointer]
+    - heading "Pokédex" [level=1] [ref=e9]
+    - button "🌙" [ref=e10] [cursor=pointer]
+  - complementary [ref=e11]:
+    - generic [ref=e12]:
+      - heading "Generaciones" [level=2] [ref=e13]
+      - button "Cerrar menú" [ref=e14] [cursor=pointer]: ✕
+    - generic [ref=e15]:
+      - button "Kanto (Gen 1)" [ref=e16] [cursor=pointer]
+      - button "Johto (Gen 2)" [ref=e17] [cursor=pointer]
+      - button "Hoenn (Gen 3)" [ref=e18] [cursor=pointer]
+      - button "Sinnoh (Gen 4)" [ref=e19] [cursor=pointer]
+      - button "Teselia (Gen 5)" [ref=e20] [cursor=pointer]
+      - button "Kalos (Gen 6)" [ref=e21] [cursor=pointer]
+      - button "Alola (Gen 7)" [ref=e22] [cursor=pointer]
+      - button "Galar (Gen 8)" [ref=e23] [cursor=pointer]
+    - button "Limpiar filtro" [ref=e189] [cursor=pointer]
+  - main [ref=e24]:
+    - generic [ref=e446]:
+      - textbox "Buscar Pokémon..." [ref=e448]
+      - generic [ref=e450]:
+        - button "normal" [ref=e451] [cursor=pointer]
+        - button "fire" [ref=e452] [cursor=pointer]
+        - button "water" [ref=e453] [cursor=pointer]
+        - button "grass" [ref=e454] [cursor=pointer]
+        - button "electric" [ref=e455] [cursor=pointer]
+        - button "ice" [ref=e456] [cursor=pointer]
+        - button "fighting" [ref=e457] [cursor=pointer]
+        - button "poison" [ref=e458] [cursor=pointer]
+        - button "ground" [ref=e459] [cursor=pointer]
+        - button "flying" [ref=e460] [cursor=pointer]
+        - button "psychic" [ref=e461] [cursor=pointer]
+        - button "bug" [ref=e462] [cursor=pointer]
+        - button "rock" [ref=e463] [cursor=pointer]
+        - button "ghost" [ref=e464] [cursor=pointer]
+        - button "dragon" [ref=e465] [cursor=pointer]
+        - button "dark" [ref=e466] [cursor=pointer]
+        - button "steel" [ref=e467] [cursor=pointer]
+        - button "fairy" [ref=e468] [cursor=pointer]
+      - generic [ref=e469]:
+        - link "Marcar como favorito bulbasaur Bulbasaur Grass Poison" [ref=e470] [cursor=pointer]:
+          - /url: /pokemon/bulbasaur
+          - button "Marcar como favorito" [ref=e471]: ★
+          - generic [ref=e472]:
+            - img "bulbasaur"
+          - heading "Bulbasaur" [level=3] [ref=e473]
+          - generic [ref=e474]:
+            - generic [ref=e475]: Grass
+            - generic [ref=e476]: Poison
+        - link "Marcar como favorito ivysaur Ivysaur Grass Poison" [ref=e477] [cursor=pointer]:
+          - /url: /pokemon/ivysaur
+          - button "Marcar como favorito" [ref=e478]: ★
+          - generic [ref=e479]:
+            - img "ivysaur"
+          - heading "Ivysaur" [level=3] [ref=e480]
+          - generic [ref=e481]:
+            - generic [ref=e482]: Grass
+            - generic [ref=e483]: Poison
+        - link "Marcar como favorito venusaur Venusaur Grass Poison" [ref=e484] [cursor=pointer]:
+          - /url: /pokemon/venusaur
+          - button "Marcar como favorito" [ref=e485]: ★
+          - generic [ref=e486]:
+            - img "venusaur"
+          - heading "Venusaur" [level=3] [ref=e487]
+          - generic [ref=e488]:
+            - generic [ref=e489]: Grass
+            - generic [ref=e490]: Poison
+        - link "Marcar como favorito charmander Charmander Fire" [ref=e491] [cursor=pointer]:
+          - /url: /pokemon/charmander
+          - button "Marcar como favorito" [ref=e492]: ★
+          - generic [ref=e493]:
+            - img "charmander"
+          - heading "Charmander" [level=3] [ref=e494]
+          - generic [ref=e496]: Fire
+        - link "Marcar como favorito charmeleon Charmeleon Fire" [ref=e497] [cursor=pointer]:
+          - /url: /pokemon/charmeleon
+          - button "Marcar como favorito" [ref=e498]: ★
+          - generic [ref=e499]:
+            - img "charmeleon"
+          - heading "Charmeleon" [level=3] [ref=e500]
+          - generic [ref=e502]: Fire
+        - link "Marcar como favorito charizard Charizard Fire Flying" [ref=e503] [cursor=pointer]:
+          - /url: /pokemon/charizard
+          - button "Marcar como favorito" [ref=e504]: ★
+          - generic [ref=e505]:
+            - img "charizard"
+          - heading "Charizard" [level=3] [ref=e506]
+          - generic [ref=e507]:
+            - generic [ref=e508]: Fire
+            - generic [ref=e509]: Flying
+        - link "Marcar como favorito squirtle Squirtle Water" [ref=e510] [cursor=pointer]:
+          - /url: /pokemon/squirtle
+          - button "Marcar como favorito" [ref=e511]: ★
+          - generic [ref=e512]:
+            - img "squirtle"
+          - heading "Squirtle" [level=3] [ref=e513]
+          - generic [ref=e515]: Water
+        - link "Marcar como favorito wartortle Wartortle Water" [ref=e516] [cursor=pointer]:
+          - /url: /pokemon/wartortle
+          - button "Marcar como favorito" [ref=e517]: ★
+          - generic [ref=e518]:
+            - img "wartortle"
+          - heading "Wartortle" [level=3] [ref=e519]
+          - generic [ref=e521]: Water
+        - link "Marcar como favorito blastoise Blastoise Water" [ref=e522] [cursor=pointer]:
+          - /url: /pokemon/blastoise
+          - button "Marcar como favorito" [ref=e523]: ★
+          - generic [ref=e524]:
+            - img "blastoise"
+          - heading "Blastoise" [level=3] [ref=e525]
+          - generic [ref=e527]: Water
+        - link "Marcar como favorito caterpie Caterpie Bug" [ref=e528] [cursor=pointer]:
+          - /url: /pokemon/caterpie
+          - button "Marcar como favorito" [ref=e529]: ★
+          - generic [ref=e530]:
+            - img "caterpie"
+          - heading "Caterpie" [level=3] [ref=e531]
+          - generic [ref=e533]: Bug
+        - link "Marcar como favorito metapod Metapod Bug" [ref=e534] [cursor=pointer]:
+          - /url: /pokemon/metapod
+          - button "Marcar como favorito" [ref=e535]: ★
+          - generic [ref=e536]:
+            - img "metapod"
+          - heading "Metapod" [level=3] [ref=e537]
+          - generic [ref=e539]: Bug
+        - link "Marcar como favorito butterfree Butterfree Bug Flying" [ref=e540] [cursor=pointer]:
+          - /url: /pokemon/butterfree
+          - button "Marcar como favorito" [ref=e541]: ★
+          - generic [ref=e542]:
+            - img "butterfree"
+          - heading "Butterfree" [level=3] [ref=e543]
+          - generic [ref=e544]:
+            - generic [ref=e545]: Bug
+            - generic [ref=e546]: Flying
+        - link "Marcar como favorito weedle Weedle Bug Poison" [ref=e547] [cursor=pointer]:
+          - /url: /pokemon/weedle
+          - button "Marcar como favorito" [ref=e548]: ★
+          - generic [ref=e549]:
+            - img "weedle"
+          - heading "Weedle" [level=3] [ref=e550]
+          - generic [ref=e551]:
+            - generic [ref=e552]: Bug
+            - generic [ref=e553]: Poison
+        - link "Marcar como favorito kakuna Kakuna Bug Poison" [ref=e554] [cursor=pointer]:
+          - /url: /pokemon/kakuna
+          - button "Marcar como favorito" [ref=e555]: ★
+          - generic [ref=e556]:
+            - img "kakuna"
+          - heading "Kakuna" [level=3] [ref=e557]
+          - generic [ref=e558]:
+            - generic [ref=e559]: Bug
+            - generic [ref=e560]: Poison
+        - link "Marcar como favorito beedrill Beedrill Bug Poison" [ref=e561] [cursor=pointer]:
+          - /url: /pokemon/beedrill
+          - button "Marcar como favorito" [ref=e562]: ★
+          - generic [ref=e563]:
+            - img "beedrill"
+          - heading "Beedrill" [level=3] [ref=e564]
+          - generic [ref=e565]:
+            - generic [ref=e566]: Bug
+            - generic [ref=e567]: Poison
+        - link "Marcar como favorito pidgey Pidgey Normal Flying" [ref=e568] [cursor=pointer]:
+          - /url: /pokemon/pidgey
+          - button "Marcar como favorito" [ref=e569]: ★
+          - generic [ref=e570]:
+            - img "pidgey"
+          - heading "Pidgey" [level=3] [ref=e571]
+          - generic [ref=e572]:
+            - generic [ref=e573]: Normal
+            - generic [ref=e574]: Flying
+        - link "Marcar como favorito pidgeotto Pidgeotto Normal Flying" [ref=e575] [cursor=pointer]:
+          - /url: /pokemon/pidgeotto
+          - button "Marcar como favorito" [ref=e576]: ★
+          - generic [ref=e577]:
+            - img "pidgeotto"
+          - heading "Pidgeotto" [level=3] [ref=e578]
+          - generic [ref=e579]:
+            - generic [ref=e580]: Normal
+            - generic [ref=e581]: Flying
+        - link "Marcar como favorito pidgeot Pidgeot Normal Flying" [ref=e582] [cursor=pointer]:
+          - /url: /pokemon/pidgeot
+          - button "Marcar como favorito" [ref=e583]: ★
+          - generic [ref=e584]:
+            - img "pidgeot"
+          - heading "Pidgeot" [level=3] [ref=e585]
+          - generic [ref=e586]:
+            - generic [ref=e587]: Normal
+            - generic [ref=e588]: Flying
+        - link "Marcar como favorito rattata Rattata Normal" [ref=e589] [cursor=pointer]:
+          - /url: /pokemon/rattata
+          - button "Marcar como favorito" [ref=e590]: ★
+          - generic [ref=e591]:
+            - img "rattata"
+          - heading "Rattata" [level=3] [ref=e592]
+          - generic [ref=e594]: Normal
+        - link "Marcar como favorito raticate Raticate Normal" [ref=e595] [cursor=pointer]:
+          - /url: /pokemon/raticate
+          - button "Marcar como favorito" [ref=e596]: ★
+          - generic [ref=e597]:
+            - img "raticate"
+          - heading "Raticate" [level=3] [ref=e598]
+          - generic [ref=e600]: Normal
+      - generic [ref=e601]:
+        - button "Anterior" [disabled] [ref=e602]
+        - generic [ref=e603]: 1 / 8
+        - button "Siguiente" [ref=e604] [cursor=pointer]

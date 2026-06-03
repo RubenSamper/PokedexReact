@@ -1,0 +1,145 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* ---- Cadena evolutiva ---- */
+
+.chain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pokemon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px;
+    border-radius: 12px;
+    background: var(--card);
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid transparent;
+    transition: border-color 0.2s, transform 0.15s;
+    min-width: 100px;
+}
+
+.pokemon:hover {
+    transform: translateY(-2px);
+    border-color: var(--border);
+}
+
+.current {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent);
+}
+
+.sprite {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+}
+
+.pokeName {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.pokeNum {
+    font-size: 0.7rem;
+    opacity: 0.5;
+}
+
+.arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    min-width: 40px;
+}
+
+.arrowLabel {
+    font-size: 0.7rem;
+    color: var(--text);
+    opacity: 0.7;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.arrowSymbol {
+    font-size: 1.2rem;
+    opacity: 0.4;
+}
+
+/* ---- Formas alternativas ---- */
+
+.formsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.formCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 10px;
+    border-radius: 12px;
+    background: var(--card);
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--border);
+    transition: transform 0.15s;
+    min-width: 90px;
+}
+
+.formCard:hover {
+    transform: translateY(-3px);
+}
+
+.formSprite {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
+.formLabel {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.formMethod {
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: #fff;
+    padding: 1px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0.9;
+}

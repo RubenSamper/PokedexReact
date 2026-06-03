@@ -1,0 +1,46 @@
+.card {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    background: var(--card-alt);
+    border-radius: 8px;
+    padding: 0.75rem;
+    transition: background 0.15s;
+}
+
+.card:hover {
+    background: var(--hover-bg);
+}
+
+.sprite {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.body {
+    flex: 1;
+    min-width: 0;
+}
+
+.name {
+    margin: 0 0 0.25rem;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.flavor {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.effect {
+    margin: 0.25rem 0 0;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+}

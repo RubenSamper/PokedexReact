@@ -1,0 +1,198 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - heading "Pokédex" [level=1] [ref=e5]
+    - button "🌙" [ref=e6] [cursor=pointer]
+  - main [ref=e7]:
+    - generic [ref=e8]:
+      - generic [ref=e10]:
+        - textbox "Buscar Pokémon..." [ref=e11]
+        - combobox [active] [ref=e12] [cursor=pointer]:
+          - option "Todas las gen."
+          - option "Kanto"
+          - option "Johto"
+          - option "Hoenn" [selected]
+          - option "Sinnoh"
+          - option "Teselia"
+          - option "Kalos"
+          - option "Alola"
+          - option "Galar"
+      - generic [ref=e14]:
+        - button "normal" [ref=e15] [cursor=pointer]
+        - button "fire" [ref=e16] [cursor=pointer]
+        - button "water" [ref=e17] [cursor=pointer]
+        - button "grass" [ref=e18] [cursor=pointer]
+        - button "electric" [ref=e19] [cursor=pointer]
+        - button "ice" [ref=e20] [cursor=pointer]
+        - button "fighting" [ref=e21] [cursor=pointer]
+        - button "poison" [ref=e22] [cursor=pointer]
+        - button "ground" [ref=e23] [cursor=pointer]
+        - button "flying" [ref=e24] [cursor=pointer]
+        - button "psychic" [ref=e25] [cursor=pointer]
+        - button "bug" [ref=e26] [cursor=pointer]
+        - button "rock" [ref=e27] [cursor=pointer]
+        - button "ghost" [ref=e28] [cursor=pointer]
+        - button "dragon" [ref=e29] [cursor=pointer]
+        - button "dark" [ref=e30] [cursor=pointer]
+        - button "steel" [ref=e31] [cursor=pointer]
+        - button "fairy" [ref=e32] [cursor=pointer]
+      - generic [ref=e34]:
+        - link "Marcar como favorito treecko Treecko Grass" [ref=e170] [cursor=pointer]:
+          - /url: /pokemon/treecko
+          - button "Marcar como favorito" [ref=e171]: ★
+          - generic [ref=e172]:
+            - img "treecko"
+          - heading "Treecko" [level=3] [ref=e173]
+          - generic [ref=e175]: Grass
+        - link "Marcar como favorito grovyle Grovyle Grass" [ref=e176] [cursor=pointer]:
+          - /url: /pokemon/grovyle
+          - button "Marcar como favorito" [ref=e177]: ★
+          - generic [ref=e178]:
+            - img "grovyle"
+          - heading "Grovyle" [level=3] [ref=e179]
+          - generic [ref=e181]: Grass
+        - link "Marcar como favorito sceptile Sceptile Grass" [ref=e182] [cursor=pointer]:
+          - /url: /pokemon/sceptile
+          - button "Marcar como favorito" [ref=e183]: ★
+          - generic [ref=e184]:
+            - img "sceptile"
+          - heading "Sceptile" [level=3] [ref=e185]
+          - generic [ref=e187]: Grass
+        - link "Marcar como favorito torchic Torchic Fire" [ref=e188] [cursor=pointer]:
+          - /url: /pokemon/torchic
+          - button "Marcar como favorito" [ref=e189]: ★
+          - generic [ref=e190]:
+            - img "torchic"
+          - heading "Torchic" [level=3] [ref=e191]
+          - generic [ref=e193]: Fire
+        - link "Marcar como favorito combusken Combusken Fire Fighting" [ref=e194] [cursor=pointer]:
+          - /url: /pokemon/combusken
+          - button "Marcar como favorito" [ref=e195]: ★
+          - generic [ref=e196]:
+            - img "combusken"
+          - heading "Combusken" [level=3] [ref=e197]
+          - generic [ref=e198]:
+            - generic [ref=e199]: Fire
+            - generic [ref=e200]: Fighting
+        - link "Marcar como favorito blaziken Blaziken Fire Fighting" [ref=e201] [cursor=pointer]:
+          - /url: /pokemon/blaziken
+          - button "Marcar como favorito" [ref=e202]: ★
+          - generic [ref=e203]:
+            - img "blaziken"
+          - heading "Blaziken" [level=3] [ref=e204]
+          - generic [ref=e205]:
+            - generic [ref=e206]: Fire
+            - generic [ref=e207]: Fighting
+        - link "Marcar como favorito mudkip Mudkip Water" [ref=e208] [cursor=pointer]:
+          - /url: /pokemon/mudkip
+          - button "Marcar como favorito" [ref=e209]: ★
+          - generic [ref=e210]:
+            - img "mudkip"
+          - heading "Mudkip" [level=3] [ref=e211]
+          - generic [ref=e213]: Water
+        - link "Marcar como favorito marshtomp Marshtomp Water Ground" [ref=e214] [cursor=pointer]:
+          - /url: /pokemon/marshtomp
+          - button "Marcar como favorito" [ref=e215]: ★
+          - generic [ref=e216]:
+            - img "marshtomp"
+          - heading "Marshtomp" [level=3] [ref=e217]
+          - generic [ref=e218]:
+            - generic [ref=e219]: Water
+            - generic [ref=e220]: Ground
+        - link "Marcar como favorito swampert Swampert Water Ground" [ref=e221] [cursor=pointer]:
+          - /url: /pokemon/swampert
+          - button "Marcar como favorito" [ref=e222]: ★
+          - generic [ref=e223]:
+            - img "swampert"
+          - heading "Swampert" [level=3] [ref=e224]
+          - generic [ref=e225]:
+            - generic [ref=e226]: Water
+            - generic [ref=e227]: Ground
+        - link "Marcar como favorito poochyena Poochyena Dark" [ref=e228] [cursor=pointer]:
+          - /url: /pokemon/poochyena
+          - button "Marcar como favorito" [ref=e229]: ★
+          - generic [ref=e230]:
+            - img "poochyena"
+          - heading "Poochyena" [level=3] [ref=e231]
+          - generic [ref=e233]: Dark
+        - link "Marcar como favorito mightyena Mightyena Dark" [ref=e234] [cursor=pointer]:
+          - /url: /pokemon/mightyena
+          - button "Marcar como favorito" [ref=e235]: ★
+          - generic [ref=e236]:
+            - img "mightyena"
+          - heading "Mightyena" [level=3] [ref=e237]
+          - generic [ref=e239]: Dark
+        - link "Marcar como favorito zigzagoon Zigzagoon Normal" [ref=e240] [cursor=pointer]:
+          - /url: /pokemon/zigzagoon
+          - button "Marcar como favorito" [ref=e241]: ★
+          - generic [ref=e242]:
+            - img "zigzagoon"
+          - heading "Zigzagoon" [level=3] [ref=e243]
+          - generic [ref=e245]: Normal
+        - link "Marcar como favorito linoone Linoone Normal" [ref=e246] [cursor=pointer]:
+          - /url: /pokemon/linoone
+          - button "Marcar como favorito" [ref=e247]: ★
+          - generic [ref=e248]:
+            - img "linoone"
+          - heading "Linoone" [level=3] [ref=e249]
+          - generic [ref=e251]: Normal
+        - link "Marcar como favorito wurmple Wurmple Bug" [ref=e252] [cursor=pointer]:
+          - /url: /pokemon/wurmple
+          - button "Marcar como favorito" [ref=e253]: ★
+          - generic [ref=e254]:
+            - img "wurmple"
+          - heading "Wurmple" [level=3] [ref=e255]
+          - generic [ref=e257]: Bug
+        - link "Marcar como favorito silcoon Silcoon Bug" [ref=e258] [cursor=pointer]:
+          - /url: /pokemon/silcoon
+          - button "Marcar como favorito" [ref=e259]: ★
+          - generic [ref=e260]:
+            - img "silcoon"
+          - heading "Silcoon" [level=3] [ref=e261]
+          - generic [ref=e263]: Bug
+        - link "Marcar como favorito beautifly Beautifly Bug Flying" [ref=e264] [cursor=pointer]:
+          - /url: /pokemon/beautifly
+          - button "Marcar como favorito" [ref=e265]: ★
+          - generic [ref=e266]:
+            - img "beautifly"
+          - heading "Beautifly" [level=3] [ref=e267]
+          - generic [ref=e268]:
+            - generic [ref=e269]: Bug
+            - generic [ref=e270]: Flying
+        - link "Marcar como favorito cascoon Cascoon Bug" [ref=e271] [cursor=pointer]:
+          - /url: /pokemon/cascoon
+          - button "Marcar como favorito" [ref=e272]: ★
+          - generic [ref=e273]:
+            - img "cascoon"
+          - heading "Cascoon" [level=3] [ref=e274]
+          - generic [ref=e276]: Bug
+        - link "Marcar como favorito dustox Dustox Bug Poison" [ref=e277] [cursor=pointer]:
+          - /url: /pokemon/dustox
+          - button "Marcar como favorito" [ref=e278]: ★
+          - generic [ref=e279]:
+            - img "dustox"
+          - heading "Dustox" [level=3] [ref=e280]
+          - generic [ref=e281]:
+            - generic [ref=e282]: Bug
+            - generic [ref=e283]: Poison
+        - link "Marcar como favorito lotad Lotad Water Grass" [ref=e284] [cursor=pointer]:
+          - /url: /pokemon/lotad
+          - button "Marcar como favorito" [ref=e285]: ★
+          - generic [ref=e286]:
+            - img "lotad"
+          - heading "Lotad" [level=3] [ref=e287]
+          - generic [ref=e288]:
+            - generic [ref=e289]: Water
+            - generic [ref=e290]: Grass
+        - link "Marcar como favorito lombre Lombre Water Grass" [ref=e291] [cursor=pointer]:
+          - /url: /pokemon/lombre
+          - button "Marcar como favorito" [ref=e292]: ★
+          - generic [ref=e293]:
+            - img "lombre"
+          - heading "Lombre" [level=3] [ref=e294]
+          - generic [ref=e295]:
+            - generic [ref=e296]: Water
+            - generic [ref=e297]: Grass
+      - generic [ref=e166]:
+        - button "Anterior" [disabled] [ref=e167]
+        - generic [ref=e168]: 1 / 7
+        - button "Siguiente" [ref=e169] [cursor=pointer]

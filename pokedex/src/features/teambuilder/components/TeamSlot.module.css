@@ -1,0 +1,109 @@
+.slot {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.75rem 0.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.15s;
+    min-height: 130px;
+    justify-content: center;
+}
+
+.slot:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.empty {
+    border: 2px dashed var(--border);
+    background: var(--card-alt);
+}
+
+.filled {
+    border: 1px solid var(--border);
+    background: var(--card);
+}
+
+.typeBar {
+    display: flex;
+    gap: 4px;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+}
+
+.typeDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+}
+
+.sprite {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.pokeName {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+    line-height: 1.2;
+}
+
+.shinyBadge {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 0.85rem;
+    color: var(--warning);
+}
+
+.clearBtn {
+    position: absolute;
+    bottom: 4px;
+    right: 6px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
+    background: var(--danger);
+    opacity: 0.8;
+    color: #fff;
+    font-size: 0.65rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.slot:hover .clearBtn {
+    opacity: 1;
+}
+
+/* ── Empty state ── */
+.emptyContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.emptyNum {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.emptyLabel {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}

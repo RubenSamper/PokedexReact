@@ -1,0 +1,165 @@
+.panel {
+    border: 2px solid;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    background: var(--card);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.toggle:hover {
+    background: var(--hover-bg);
+}
+
+.toggleHint {
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.body {
+    padding: 0.5rem 0.75rem 0.75rem;
+    border-top: 1px solid var(--border);
+}
+
+/* ── Top row ── */
+.topRow {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.field {
+    flex: 1;
+}
+
+.label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 0.15rem;
+}
+
+.numInput {
+    width: 100%;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font: inherit;
+    font-size: 0.8rem;
+    background: var(--card);
+    color: var(--text);
+    box-sizing: border-box;
+    max-width: 70px;
+}
+
+.select {
+    width: 100%;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font: inherit;
+    font-size: 0.75rem;
+    background: var(--card);
+    color: var(--text);
+}
+
+/* ── Stats grid ── */
+.statsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.statRow {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0;
+}
+
+.statName {
+    width: 52px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    flex-shrink: 0;
+}
+
+.statBase {
+    width: 24px;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.inputGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+}
+
+.subLabel {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    width: 14px;
+}
+
+.evInput {
+    width: 44px;
+    padding: 0.2rem 0.3rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font: inherit;
+    font-size: 0.72rem;
+    text-align: center;
+    background: var(--card);
+    color: var(--text);
+}
+
+.ivInput {
+    width: 36px;
+    padding: 0.2rem 0.3rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font: inherit;
+    font-size: 0.72rem;
+    text-align: center;
+    background: var(--card);
+    color: var(--text);
+}
+
+.statReal {
+    width: 36px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.evTotal {
+    margin: 0.4rem 0 0;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.warning {
+    color: var(--danger);
+    font-weight: 600;
+}

@@ -1,0 +1,186 @@
+.container {
+    margin-bottom: 0.5rem;
+}
+
+.title {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.topRow {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.field {
+    flex: 1;
+}
+
+.label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
+}
+
+.numInput {
+    width: 100%;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font: inherit;
+    font-size: 0.85rem;
+    background: var(--card);
+    color: var(--text);
+    box-sizing: border-box;
+    max-width: 80px;
+}
+
+.select {
+    width: 100%;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font: inherit;
+    font-size: 0.8rem;
+    background: var(--card);
+    color: var(--text);
+}
+
+/* ── Grid de stats ── */
+.statsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.statRow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0;
+}
+
+.statName {
+    width: 60px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    flex-shrink: 0;
+}
+
+.statBase {
+    width: 28px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.evGroup,
+.ivGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.subLabel {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    width: 16px;
+}
+
+.evInput {
+    width: 52px;
+    padding: 0.25rem 0.4rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font: inherit;
+    font-size: 0.78rem;
+    text-align: center;
+    background: var(--card);
+    color: var(--text);
+}
+
+.ivInput {
+    width: 40px;
+    padding: 0.25rem 0.4rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font: inherit;
+    font-size: 0.78rem;
+    text-align: center;
+    background: var(--card);
+    color: var(--text);
+}
+
+.statFinal {
+    width: 40px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.natUp {
+    color: var(--success);
+    font-size: 0.8rem;
+}
+
+.natDown {
+    color: var(--danger);
+    font-size: 0.8rem;
+}
+
+.evTotal {
+    margin: 0.5rem 0 0;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.evWarning {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+@media (max-width: 480px) {
+    .topRow {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .numInput {
+        max-width: 100%;
+    }
+    .statRow {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        padding: 0.2rem 0;
+    }
+    .statName {
+        width: 44px;
+        font-size: 0.7rem;
+    }
+    .statBase {
+        width: 22px;
+        font-size: 0.65rem;
+    }
+    .evInput {
+        width: 42px;
+        font-size: 0.7rem;
+    }
+    .ivInput {
+        width: 34px;
+        font-size: 0.7rem;
+    }
+    .statFinal {
+        width: 32px;
+        font-size: 0.75rem;
+    }
+    .subLabel {
+        width: 12px;
+        font-size: 0.6rem;
+    }
+}

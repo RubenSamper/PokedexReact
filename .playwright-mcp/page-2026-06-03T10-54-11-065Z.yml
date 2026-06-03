@@ -1,0 +1,39 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - button "Menú" [ref=e6] [cursor=pointer]
+    - heading "Pokédex" [level=1] [ref=e10]
+    - button "🌙" [ref=e11] [cursor=pointer]
+  - main [ref=e12]:
+    - generic [ref=e13]:
+      - generic [ref=e15]:
+        - textbox "Buscar Pokémon..." [ref=e16]
+        - combobox [ref=e17] [cursor=pointer]:
+          - option "Todas las gen." [selected]
+          - option "Kanto"
+          - option "Johto"
+          - option "Hoenn"
+          - option "Sinnoh"
+          - option "Teselia"
+          - option "Kalos"
+          - option "Alola"
+          - option "Galar"
+      - generic [ref=e19]:
+        - button "normal" [ref=e20] [cursor=pointer]
+        - button "fire" [ref=e21] [cursor=pointer]
+        - button "water" [ref=e22] [cursor=pointer]
+        - button "grass" [ref=e23] [cursor=pointer]
+        - button "electric" [ref=e24] [cursor=pointer]
+        - button "ice" [ref=e25] [cursor=pointer]
+        - button "fighting" [ref=e26] [cursor=pointer]
+        - button "poison" [ref=e27] [cursor=pointer]
+        - button "ground" [ref=e28] [cursor=pointer]
+        - button "flying" [ref=e29] [cursor=pointer]
+        - button "psychic" [ref=e30] [cursor=pointer]
+        - button "bug" [ref=e31] [cursor=pointer]
+        - button "rock" [ref=e32] [cursor=pointer]
+        - button "ghost" [ref=e33] [cursor=pointer]
+        - button "dragon" [ref=e34] [cursor=pointer]
+        - button "dark" [ref=e35] [cursor=pointer]
+        - button "steel" [ref=e36] [cursor=pointer]
+        - button "fairy" [ref=e37] [cursor=pointer]
+      - generic [ref=e38]: Cargando...

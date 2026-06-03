@@ -1,0 +1,14 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - button "Menú" [ref=e5] [cursor=pointer]
+    - heading "Pokédex" [level=1] [ref=e9]
+    - button "🌙" [ref=e10] [cursor=pointer]
+  - complementary [ref=e11]:
+    - generic [ref=e12]:
+      - heading "Menú" [level=2] [ref=e13]
+      - button "Cerrar menú" [ref=e14] [cursor=pointer]: ✕
+    - navigation [ref=e15]:
+      - button "Equipos de Cobblemon" [ref=e16] [cursor=pointer]
+      - button "Prediseñar equipo" [ref=e17] [cursor=pointer]
+  - main [ref=e18]:
+    - generic [ref=e19]: Cargando...

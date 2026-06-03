@@ -1,0 +1,41 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - button "Abrir menú de filtros" [ref=e5] [cursor=pointer]
+    - heading "Pokédex" [level=1] [ref=e9]
+    - button "🌙" [ref=e10] [cursor=pointer]
+  - complementary [ref=e11]:
+    - generic [ref=e12]:
+      - heading "Generaciones" [level=2] [ref=e13]
+      - button "Cerrar menú" [ref=e14] [cursor=pointer]: ✕
+    - generic [ref=e15]:
+      - button "Kanto (Gen 1)" [ref=e16] [cursor=pointer]
+      - button "Johto (Gen 2)" [ref=e17] [cursor=pointer]
+      - button "Hoenn (Gen 3)" [ref=e18] [cursor=pointer]
+      - button "Sinnoh (Gen 4)" [ref=e19] [cursor=pointer]
+      - button "Teselia (Gen 5)" [ref=e20] [cursor=pointer]
+      - button "Kalos (Gen 6)" [ref=e21] [cursor=pointer]
+      - button "Alola (Gen 7)" [ref=e22] [cursor=pointer]
+      - button "Galar (Gen 8)" [ref=e23] [cursor=pointer]
+  - main [ref=e24]:
+    - generic [ref=e25]:
+      - textbox "Buscar Pokémon..." [ref=e27]
+      - generic [ref=e29]:
+        - button "normal" [ref=e30] [cursor=pointer]
+        - button "fire" [ref=e31] [cursor=pointer]
+        - button "water" [ref=e32] [cursor=pointer]
+        - button "grass" [ref=e33] [cursor=pointer]
+        - button "electric" [ref=e34] [cursor=pointer]
+        - button "ice" [ref=e35] [cursor=pointer]
+        - button "fighting" [ref=e36] [cursor=pointer]
+        - button "poison" [ref=e37] [cursor=pointer]
+        - button "ground" [ref=e38] [cursor=pointer]
+        - button "flying" [ref=e39] [cursor=pointer]
+        - button "psychic" [ref=e40] [cursor=pointer]
+        - button "bug" [ref=e41] [cursor=pointer]
+        - button "rock" [ref=e42] [cursor=pointer]
+        - button "ghost" [ref=e43] [cursor=pointer]
+        - button "dragon" [ref=e44] [cursor=pointer]
+        - button "dark" [ref=e45] [cursor=pointer]
+        - button "steel" [ref=e46] [cursor=pointer]
+        - button "fairy" [ref=e47] [cursor=pointer]
+      - generic [ref=e48]: Cargando...

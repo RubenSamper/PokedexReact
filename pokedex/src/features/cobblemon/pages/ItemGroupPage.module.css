@@ -1,0 +1,59 @@
+.container {
+    padding: 1.5rem;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.backBtn {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text-secondary);
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.backBtn:hover {
+    background: var(--hover-bg);
+}
+
+.title {
+    margin: 0 0 1.25rem;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.loading,
+.error,
+.empty {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.error {
+    color: var(--danger);
+}
+
+.catBlock {
+    margin-bottom: 1.5rem;
+}
+
+.catTitle {
+    margin: 0 0 0.75rem;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.itemGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}

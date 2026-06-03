@@ -1,0 +1,154 @@
+.wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.topBar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.closeBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+
+.closeBtn:hover {
+    background: var(--border);
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 24px;
+}
+
+.headerSprite {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        padding: 12px;
+    }
+    .headerSprite {
+        width: 140px;
+        height: 140px;
+    }
+    .name {
+        font-size: 1.4rem;
+    }
+    .closeBtn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+    .header {
+        padding: 16px 12px;
+        gap: 10px;
+    }
+    .description {
+        font-size: 0.85rem;
+    }
+    .section h2 {
+        font-size: 1.05rem;
+    }
+}
+
+.toggleGroup {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.toggleBtn {
+    padding: 4px 14px;
+    border-radius: 999px;
+    border: 1.5px solid var(--warning);
+    background: transparent;
+    color: var(--warning);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.toggleBtn:hover {
+    background: rgba(245, 197, 24, 0.1);
+}
+
+.toggleActive {
+    background: var(--warning);
+    color: #222;
+}
+
+.toggleActive:hover {
+    background: #e0b000;
+}
+
+.types {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text);
+    opacity: 0.85;
+    max-width: 600px;
+    margin: 12px auto 0;
+    text-align: center;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.section h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.section p {
+    margin: 0;
+    font-size: 0.95rem;
+}

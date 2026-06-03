@@ -1,0 +1,133 @@
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    user-select: none;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.card:active {
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        transition: none;
+    }
+}
+
+.shiny {
+    border-color: var(--warning);
+    box-shadow: 0 0 8px rgba(245, 197, 24, 0.2);
+}
+
+.shiny:hover {
+    box-shadow: 0 4px 16px rgba(245, 197, 24, 0.3);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sprite {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.shinyBadge {
+    color: var(--warning);
+    font-size: 0.8rem;
+}
+
+.meta {
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+.badges {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.typeBadge {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #fff;
+    padding: 1px 8px;
+    border-radius: 4px;
+}
+
+.itemRow {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.itemIcon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.itemName {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.noItem {
+    font-style: italic;
+    opacity: 0.5;
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 8px;
+        gap: 6px;
+    }
+    .sprite {
+        width: 44px;
+        height: 44px;
+    }
+    .name {
+        font-size: 0.8rem;
+    }
+    .meta {
+        font-size: 0.65rem;
+    }
+    .itemRow {
+        font-size: 0.6rem;
+    }
+}

@@ -1,0 +1,51 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - button "Menú" [ref=e5] [cursor=pointer]
+    - heading "Pokédex" [level=1] [ref=e9]
+    - button "🌙" [ref=e10] [cursor=pointer]
+  - complementary [ref=e11]:
+    - generic [ref=e12]:
+      - heading "Menú" [level=2] [ref=e13]
+      - button "Cerrar menú" [active] [ref=e14] [cursor=pointer]: ✕
+    - navigation [ref=e15]:
+      - button "Equipos de Cobblemon" [ref=e16] [cursor=pointer]
+      - button "Prediseñar equipo" [ref=e17] [cursor=pointer]
+  - main [ref=e18]:
+    - generic [ref=e183]:
+      - button "← Volver" [ref=e184] [cursor=pointer]
+      - generic [ref=e185]:
+        - img "bulbasaur"
+        - heading "Bulbasaur" [level=1] [ref=e186]
+        - generic [ref=e187]:
+          - generic [ref=e188]: Grass
+          - generic [ref=e189]: Poison
+      - generic [ref=e190]:
+        - generic [ref=e191]:
+          - heading "Estadísticas" [level=2] [ref=e192]
+          - generic [ref=e193]:
+            - generic [ref=e194]:
+              - generic [ref=e195]: Hp
+              - generic [ref=e196]: "45"
+            - generic [ref=e199]:
+              - generic [ref=e200]: Attack
+              - generic [ref=e201]: "49"
+            - generic [ref=e204]:
+              - generic [ref=e205]: Defense
+              - generic [ref=e206]: "49"
+            - generic [ref=e209]:
+              - generic [ref=e210]: Special-attack
+              - generic [ref=e211]: "65"
+            - generic [ref=e214]:
+              - generic [ref=e215]: Special-defense
+              - generic [ref=e216]: "65"
+            - generic [ref=e219]:
+              - generic [ref=e220]: Speed
+              - generic [ref=e221]: "45"
+        - generic [ref=e224]:
+          - heading "Información" [level=2] [ref=e225]
+          - paragraph [ref=e226]:
+            - strong [ref=e227]: "Peso:"
+            - text: 6.9 kg
+          - paragraph [ref=e228]:
+            - strong [ref=e229]: "Altura:"
+            - text: 0.7 m

@@ -1,0 +1,189 @@
+.container {
+    margin-top: 1.5rem;
+}
+
+.title {
+    margin: 0 0 1rem;
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+/* ── Resultado ── */
+.resultCard {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.winnerBanner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.vs {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-muted);
+}
+
+.winnerInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.winnerSprite {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.winnerName {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.winLabel {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--success);
+    background: var(--success-bg);
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+}
+
+/* ── Barra de score ── */
+.scoreBar {
+    margin-bottom: 0.5rem;
+}
+
+.scoreTrack {
+    height: 12px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.scoreFill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.5s ease;
+}
+
+.scoreLabels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+}
+
+.confidence {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ── Detalles ── */
+.details {
+    background: var(--card-alt);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.detailsTitle {
+    margin: 0 0 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.detailList {
+    margin: 0;
+    padding-left: 1.2rem;
+}
+
+.detailItem {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+    line-height: 1.4;
+}
+
+/* ── Grid de tipos ── */
+.typeGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.typeCol {
+    text-align: center;
+}
+
+.typeCol h5 {
+    margin: 0 0 0.4rem;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+}
+
+.typeBadges {
+    display: flex;
+    gap: 0.3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.3rem;
+}
+
+.typeBadge {
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.statLine {
+    margin: 0.2rem 0;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.effLine {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+@media (max-width: 480px) {
+    .winnerBanner {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .vs {
+        font-size: 1.2rem;
+    }
+    .winnerSprite {
+        width: 64px;
+        height: 64px;
+    }
+    .winnerName {
+        font-size: 0.85rem;
+    }
+    .typeGrid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+}

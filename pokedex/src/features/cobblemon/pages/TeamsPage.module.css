@@ -1,0 +1,116 @@
+.wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+.pageTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 16px;
+}
+
+.empty {
+    text-align: center;
+    opacity: 0.6;
+    padding: 40px 0;
+    font-size: 1.1rem;
+}
+
+/* ---- Pestañas de jugadores ---- */
+
+.playerTabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.playerTab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.playerTab:hover {
+    background: var(--border);
+}
+
+.playerTabActive {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #fff;
+}
+
+.playerName {
+    font-weight: 600;
+}
+
+.playerCount {
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+/* ---- Grid del equipo ---- */
+
+.teamContent {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.teamGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+@media (max-width: 480px) {
+    .teamGrid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 8px;
+    }
+    .wrapper {
+        padding: 0 10px 30px;
+    }
+    .pageTitle {
+        font-size: 1.2rem;
+    }
+    .playerTab {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+.emptySlot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 24px;
+    border-radius: 12px;
+    border: 2px dashed var(--border);
+    opacity: 0.3;
+}
+
+.emptySlotIcon {
+    font-size: 1.5rem;
+}
+
+.emptySlotLabel {
+    font-size: 0.8rem;
+}
+
+.chartSection {
+    max-width: 500px;
+    margin: 0 auto 24px;
+}

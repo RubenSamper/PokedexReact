@@ -1,0 +1,60 @@
+.container {
+    margin: 1rem 0;
+}
+
+.title {
+    margin: 0 0 0.75rem;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem;
+}
+
+.cardWide {
+    grid-column: 1 / -1;
+}
+
+.cardTitle {
+    margin: 0 0 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+}
+
+.neutral {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.hint {
+    margin: 0 0 0.5rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.typeList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.typeBadge {
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}

@@ -1,0 +1,83 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.subtitle {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin: -8px 0 0;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sectionTitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.chipDanger,
+.chipWeak,
+.chipResist,
+.chipImmune,
+.chipCover,
+.chipMissing {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.chipDanger {
+    box-shadow: 0 0 6px rgba(255, 0, 0, 0.4);
+}
+
+.chipWeak {
+    opacity: 0.85;
+}
+
+.chipResist {
+    opacity: 0.75;
+}
+
+.chipImmune {
+    opacity: 0.9;
+}
+
+.chipCover {
+    opacity: 0.8;
+}
+
+.chipMissing {
+    opacity: 0.45;
+}
+
+.empty {
+    text-align: center;
+    opacity: 0.5;
+    padding: 20px;
+}
