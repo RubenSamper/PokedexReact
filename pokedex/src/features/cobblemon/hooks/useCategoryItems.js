@@ -25,7 +25,8 @@ async function fetchItems(items) {
 
         const flavorEs =
             data.flavor_text_entries
-                ?.find((e) => e.language.name === "es")
+                ?.filter((e) => e.language.name === "es")
+                .at(-1)
                 ?.text?.replace(/[\n\f]/g, " ")
                 .replace(/\s+/g, " ")
                 .trim() || null;

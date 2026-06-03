@@ -23,7 +23,7 @@ export default function PokemonPage() {
     useEffect(() => {
         if (!pokemon?.cries?.latest) return;
         const audio = new Audio(pokemon.cries.latest);
-        audio.volume = 0.3;
+        audio.volume = 0.1;
         audio.play().catch(() => {});
     }, [pokemon]);
 

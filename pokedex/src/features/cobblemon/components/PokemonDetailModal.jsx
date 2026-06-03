@@ -158,7 +158,7 @@ export default function PokemonDetailModal({ pokemon, onClose }) {
     useEffect(() => {
         let cancelled = false;
         setLoading(true);
-        const speciesKey = name.toLowerCase().replace(/[^a-z0-9-]/g, "");
+        const speciesKey = name.toLowerCase().replace(/[_ ]/g, "-").replace(/[^a-z0-9-]/g, "");
         fetch(`https://pokeapi.co/api/v2/pokemon/${speciesKey}`)
             .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
             .then((data) => {

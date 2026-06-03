@@ -38,8 +38,13 @@ function getSpriteUrl(pokemonName, isShiny = false, dexNumber = null) {
     const shiny = isShiny ? 'shiny/' : '';
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${shiny}${dexNumber}.png`;
   }
-  const key = pokemonName.toLowerCase().replace(/[^a-z0-9-]/g, '');
-  return `https://img.pokemondb.net/sprites/sword-shield/icon/${key}.png`;
+  const key = pokemonName
+    .toLowerCase()
+    .replace(/[_ ]/g, '-')
+    .replace(/[^a-z0-9-]/g, '')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+  return `https://img.pokemondb.net/sprites/scarlet-violet/icon/${key}.png`;
 }
 
 // ── HP bar class ──
