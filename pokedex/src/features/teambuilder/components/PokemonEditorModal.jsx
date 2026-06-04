@@ -23,7 +23,7 @@ export default function PokemonEditorModal({ slot, speciesList, onSave, onClose 
     const [ivs, setIvs] = useState(slot.ivs || { hp: 31, atk: 31, def: 31, spAtk: 31, spDef: 31, spe: 31 });
     const [evs, setEvs] = useState(slot.evs || { hp: 0, atk: 0, def: 0, spAtk: 0, spDef: 0, spe: 0 });
 
-    const { data: details, isLoading } = usePokemonDetails(selectedSpecies);
+    const { data: details, isLoading, isError, error } = usePokemonDetails(selectedSpecies);
 
     // Solo movimientos que este Pokémon puede aprender realmente
     const learnableMoves = details?.moves || [];
@@ -156,7 +156,18 @@ export default function PokemonEditorModal({ slot, speciesList, onSave, onClose 
 
                     {isLoading && <p className={styles.loading}>Cargando datos...</p>}
 
-                    {details && !isLoading && (
+                    {isError && (
+                        <div className={styles.errorBox}>
+                            <p className={styles.errorText}>
+                                Error al cargar datos: {error?.message || "Error desconocido"}
+                            </p>
+                            <p className={styles.errorHint}>
+                                Comprueba tu conexión o selecciona otro Pokémon.
+                            </p>
+                        </div>
+                    )}
+
+                    {details && !isLoading && !isError && (
                         <>
                             {/* ── Info básica ── */}
                             <div className={styles.infoRow}>

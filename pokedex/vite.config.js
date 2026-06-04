@@ -8,8 +8,13 @@ export default defineConfig({
   server: {
     port: 5174,
   },
+  css: {
+    postcss: './postcss.config.cjs',
+  },
   build: {
-    outDir: '..',
+    outDir: 'dist',
+    target: 'es2015',
+    emptyOutDir: true,
     cssMinify: true,
     rollupOptions: {
       output: {

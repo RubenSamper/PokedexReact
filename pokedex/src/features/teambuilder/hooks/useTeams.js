@@ -38,7 +38,11 @@ export function useTeams() {
 
     // Auto-guardar
     useEffect(() => {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(teams));
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(teams));
+        } catch {
+            // Almacenamiento no disponible o lleno — fallo silencioso
+        }
     }, [teams]);
 
     // Seleccionar primer equipo al cargar

@@ -58,6 +58,7 @@ body {
 /* Touch feedback global */
 button, a, select, input, [role="button"] {
   -webkit-tap-highlight-color: transparent;
+  -ms-touch-action: manipulation;
   touch-action: manipulation;
 }
 

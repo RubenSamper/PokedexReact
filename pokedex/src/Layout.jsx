@@ -5,15 +5,23 @@ import styles from "./Layout.module.css";
 
 export default function Layout({ children }) {
     const [dark, setDark] = useState(() => {
-        const saved = localStorage.getItem("pokedex_theme");
-        return saved !== null ? saved === "dark" : true;
+        try {
+            const saved = localStorage.getItem("pokedex_theme");
+            return saved !== null ? saved === "dark" : true;
+        } catch {
+            return true; // Valor por defecto si localStorage no está disponible
+        }
     });
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         document.documentElement.dataset.theme = dark ? "dark" : "light";
-        localStorage.setItem("pokedex_theme", dark ? "dark" : "light");
+        try {
+            localStorage.setItem("pokedex_theme", dark ? "dark" : "light");
+        } catch {
+            // Almacenamiento no disponible — fallo silencioso
+        }
     }, [dark]);
 
     // Bloquear scroll del body cuando el menú está abierto

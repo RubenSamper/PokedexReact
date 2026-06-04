@@ -43,6 +43,9 @@
     width: 80px;
     height: 80px;
     object-fit: contain;
+    image-rendering: crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
     image-rendering: pixelated;
 }
 
