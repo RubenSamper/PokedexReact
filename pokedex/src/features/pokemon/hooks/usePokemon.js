@@ -40,17 +40,22 @@ function getClassification({ isLegendary, isMythical, isBaby }, pokemonName) {
 }
 
 async function fetchPokemon(name) {
-    // 1) Fetch Pokémon + especie EN PARALELO
-    const [pokemonRes, speciesRes] = await Promise.all([
-        fetch(`https://pokeapi.co/api/v2/pokemon/${name}`),
-        fetch(`https://pokeapi.co/api/v2/pokemon-species/${name}/`).catch(
-            () => null
-        ),
-    ]);
+    // 1) Fetch datos del Pokémon
+    const pokemonRes = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${name}`
+    );
 
     if (!pokemonRes.ok) throw new Error("Error fetching Pokémon");
 
     const pokemon = await pokemonRes.json();
+
+    // 2) Fetch especie usando el nombre base de la especie (no el nombre de la forma)
+    //    Esto es necesario porque formas como "deoxys-normal" no existen como especie;
+    //    la especie se llama "deoxys" y viene en pokemon.species.name
+    const speciesName = pokemon.species?.name || name;
+    const speciesRes = await fetch(
+        `https://pokeapi.co/api/v2/pokemon-species/${speciesName}/`
+    ).catch(() => null);
 
     // Valores por defecto
     let nameEs =
@@ -95,14 +100,14 @@ async function fetchPokemon(name) {
         generation = species.generation || null;
     }
 
-    const isUltraBeast = ULTRA_BEASTS.includes(pokemon.name.toLowerCase());
+    const isUltraBeast = ULTRA_BEASTS.includes(speciesName.toLowerCase());
     const isPseudoLegendary = PSEUDO_LEGENDARIES.includes(
-        pokemon.name.toLowerCase()
+        speciesName.toLowerCase()
     );
 
     const classification = getClassification(
         { isLegendary, isMythical, isBaby },
-        pokemon.name
+        speciesName
     );
 
     const generationName = getGenerationName(generation);
