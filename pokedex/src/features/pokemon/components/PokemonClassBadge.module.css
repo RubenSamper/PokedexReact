@@ -1,0 +1,46 @@
+.badge {
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.legendary {
+    background: #FFD700;
+    color: #222;
+}
+
+.mythical {
+    background: #FF6EC7;
+    color: white;
+}
+
+.ultraBeast {
+    background: #00CED1;
+    color: white;
+}
+
+.pseudoLegendary {
+    background: #FF8C00;
+    color: white;
+}
+
+.baby {
+    background: #87CEEB;
+    color: #222;
+}
+
+.generation {
+    background: #6B7280;
+    color: white;
+}
+
+.container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}

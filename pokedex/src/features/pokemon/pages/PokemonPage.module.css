@@ -53,6 +53,13 @@
     text-align: center;
 }
 
+.classBadges {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
 @media (max-width: 480px) {
     .wrapper {
         padding: 12px;

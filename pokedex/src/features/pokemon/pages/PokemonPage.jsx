@@ -4,6 +4,7 @@ import { BiChevronLeft, BiDiamond } from "react-icons/bi";
 import { usePokemon } from "../hooks/usePokemon";
 import PokemonImage from "../components/PokemonImage";
 import PokemonTypeBadge from "../components/PokemonTypeBadge";
+import PokemonClassBadge from "../components/PokemonClassBadge";
 import PokemonStats from "../components/PokemonStats";
 import PokemonWeaknesses from "../components/PokemonWeaknesses";
 import PokemonAbilities from "../components/PokemonAbilities";
@@ -85,6 +86,13 @@ export default function PokemonPage() {
                     {pokemon.types.map((t) => (
                         <PokemonTypeBadge key={t.type.name} type={t.type.name} />
                     ))}
+                </div>
+
+                <div className={styles.classBadges}>
+                    <PokemonClassBadge
+                        classification={pokemon.classification}
+                        generationName={pokemon.generationName}
+                    />
                 </div>
 
                 {pokemon.descriptionEs && (
