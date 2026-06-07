@@ -24,18 +24,19 @@ const GENERATIONS = {
 };
 
 export default function HomePage() {
+    const { generation } = useFilter();
+    const [search, setSearch] = useState("");
+    const [types, setTypes] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [showForms, setShowForms] = useState(false);
+    const pageSize = 20;
+
     // ---- 1. Lista base: solo nombres e IDs (1 llamada API) ----
     const {
         data: allPokemon = [],
         isLoading: listLoading,
         isError: listError,
-    } = usePokemonList();
-
-    const { generation } = useFilter();
-    const [search, setSearch] = useState("");
-    const [types, setTypes] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const pageSize = 20;
+    } = usePokemonList(showForms);
 
     // Mapa de nombres español → inglés para buscar en ambos idiomas
     const { data: spanishNameMap = {} } = useSpanishNameMap();
@@ -43,7 +44,7 @@ export default function HomePage() {
     // Resetear página al cambiar filtros
     useEffect(() => {
         setCurrentPage(1);
-    }, [generation, search, types]);
+    }, [generation, search, types, showForms]);
 
     // ---- 2. Filtro por tipo mediante PokeAPI (0-2 llamadas) ----
     const {
@@ -98,6 +99,12 @@ export default function HomePage() {
     const isLoading = listLoading || (types.length > 0 && typeLoading);
     const isError = listError || typeError;
 
+    // Contar formas para mostrar en la UI
+    const formsCount = useMemo(() => {
+        if (!showForms) return 0;
+        return allPokemon.filter((p) => p.isForm).length;
+    }, [allPokemon, showForms]);
+
     // ---- Handlers ----
     const handleSearch = useCallback((value) => {
         setSearch(value);
@@ -105,6 +112,10 @@ export default function HomePage() {
 
     const handleTypesChange = useCallback((newTypes) => {
         setTypes(newTypes);
+    }, []);
+
+    const handleToggleForms = useCallback(() => {
+        setShowForms((prev) => !prev);
     }, []);
 
     // ---- Render ----
@@ -117,6 +128,35 @@ export default function HomePage() {
 
             <div className={styles.filters}>
                 <PokemonsFilter selectedTypes={types} onChange={handleTypesChange} />
+            </div>
+
+            {/* Toggle de formas alternativas */}
+            <div className={styles.formsToggleBar}>
+                <label
+                    className={styles.formsToggle}
+                    onClick={handleToggleForms}
+                >
+                    <span className={styles.formsToggleLabel}>
+                        Mostrar formas alternativas
+                        {showForms && formsCount > 0 && (
+                            <span className={styles.formsCount}>({formsCount} formas)</span>
+                        )}
+                    </span>
+                    <div
+                        className={`${styles.toggleSwitch} ${showForms ? styles.toggleSwitchActive : ""}`}
+                        role="switch"
+                        aria-checked={showForms}
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                                e.preventDefault();
+                                handleToggleForms();
+                            }
+                        }}
+                    >
+                        <div className={styles.toggleSlider} />
+                    </div>
+                </label>
             </div>
 
             {types.length > 0 && typeLoading && (
