@@ -4,6 +4,7 @@ const FORM_TYPE_COLORS = {
     mega: { bg: "#E3350D", text: "#fff" },
     gmax: { bg: "#855AC9", text: "#fff" },
     regional: { bg: "#2E7D32", text: "#fff" },
+    original: { bg: "#FF9800", text: "#fff" },
     primal: { bg: "#FF6B35", text: "#fff" },
     origin: { bg: "#4A90D9", text: "#fff" },
     therian: { bg: "#8B5CF6", text: "#fff" },

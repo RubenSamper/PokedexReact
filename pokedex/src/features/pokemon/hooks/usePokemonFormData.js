@@ -56,6 +56,8 @@ function detectFormType(name) {
     if (name.includes("-primal")) return "primal";
     if (name.includes("-origin")) return "origin";
     if (name.includes("-therian")) return "therian";
+    // Si no tiene sufijo, es la forma original (caso: ver Alola → mostrar Kantonio)
+    if (!name.includes("-")) return "original";
     return "other";
 }
 
@@ -64,7 +66,7 @@ function detectFormType(name) {
  */
 function getFormLabel(name) {
     const match = name.match(/-(.+)$/);
-    if (!match) return "Forma alternativa";
+    if (!match) return "Original";
     const suffix = match[1];
 
     if (suffix === "gmax") return "Gigamax";

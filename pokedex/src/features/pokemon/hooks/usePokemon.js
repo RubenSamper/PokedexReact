@@ -89,8 +89,9 @@ async function fetchPokemon(name) {
         evolutionChainUrl = species.evolution_chain?.url || "";
 
         // Extraer variedades (formas alternativas: mega, gmax, regionales)
+        // Excluimos la forma actual para que solo aparezcan las otras formas
         varieties = (species.varieties || [])
-            .filter((v) => !v.is_default)
+            .filter((v) => v.pokemon.name !== pokemon.name)
             .map((v) => ({ name: v.pokemon.name }));
 
         // Nuevos campos de la especie
