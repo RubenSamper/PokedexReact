@@ -28,7 +28,10 @@ export default function HomePage() {
     const [search, setSearch] = useState("");
     const [types, setTypes] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [showForms, setShowForms] = useState(false);
+    const [showForms, setShowForms] = useState(() => {
+        try { return localStorage.getItem("pokedex_showForms") === "true"; }
+        catch { return false; }
+    });
     const pageSize = 20;
 
     // ---- 1. Lista base: solo nombres e IDs (1 llamada API) ----
@@ -40,6 +43,12 @@ export default function HomePage() {
 
     // Mapa de nombres español → inglés para buscar en ambos idiomas
     const { data: spanishNameMap = {} } = useSpanishNameMap();
+
+    // Persistir toggle de formas en localStorage
+    useEffect(() => {
+        try { localStorage.setItem("pokedex_showForms", showForms); }
+        catch { /* ignorar */ }
+    }, [showForms]);
 
     // Resetear página al cambiar filtros
     useEffect(() => {

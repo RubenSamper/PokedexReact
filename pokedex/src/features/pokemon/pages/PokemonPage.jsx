@@ -44,6 +44,9 @@ export default function PokemonPage() {
         audio.play().catch(() => {});
     }, [pokemon]);
 
+    // Nombre base de la especie (ej: "charizard" aunque estemos en "charizard-mega-x")
+    const speciesName = pokemon?.species?.name || name;
+
     // NOTA: Todos los hooks deben ir ANTES de los early returns.
     // Este useMemo fusiona datos de la forma activa con los del Pokémon base.
     const isFormActive = selectedForm && selectedForm !== name;
@@ -76,6 +79,11 @@ export default function PokemonPage() {
 
     if (isLoading || !displayPokemon) return <Loader />;
     if (isError) return <ErrorMessage message="Error cargando Pokémon" />;
+
+    // Sprite base: si estamos viendo una forma, usa el sprite de la especie base
+    const baseSprite = formMap?.[speciesName]?.sprites?.other?.["official-artwork"]?.front_default
+        || displayPokemon.sprites.other["official-artwork"]?.front_default
+        || displayPokemon.sprites.front_default;
 
     const hasShiny = !!displayPokemon.sprites.other["official-artwork"]?.front_shiny;
 
@@ -144,8 +152,8 @@ export default function PokemonPage() {
                 <PokemonFormSwitcher
                     forms={Object.values(formMap)}
                     currentForm={selectedForm || name}
-                    baseName={name}
-                    baseSprite={displayPokemon.sprites.other["official-artwork"]?.front_default || displayPokemon.sprites.front_default}
+                    baseName={speciesName}
+                    baseSprite={baseSprite}
                     onFormSelect={handleFormSelect}
                     loading={formsLoading}
                     totalVarieties={pokemon.varieties.length}

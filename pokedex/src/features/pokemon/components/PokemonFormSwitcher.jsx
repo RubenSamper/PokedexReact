@@ -35,7 +35,11 @@ export default function PokemonFormSwitcher({
     loading = false,
     totalVarieties = 0,
 }) {
-    if (totalVarieties === 0 && forms.length === 0 && !loading) return null;
+    // Filtramos la base de forms para no duplicar el botón "Base"
+    const uniqueForms = forms.filter((f) => f.name !== baseName);
+
+    // No mostrar si no hay formas alternativas reales
+    if (!loading && uniqueForms.length === 0) return null;
 
     // Combinamos la forma base con las alternativas para tener el toggle completo
     const allForms = [
@@ -45,7 +49,7 @@ export default function PokemonFormSwitcher({
             formType: "base",
             formLabel: "Base",
         },
-        ...forms.map((f) => ({
+        ...uniqueForms.map((f) => ({
             name: f.name,
             sprite: f.sprites?.other?.["official-artwork"]?.front_default || null,
             formType: f.formType,
@@ -101,7 +105,7 @@ export default function PokemonFormSwitcher({
                     );
                 })}
             </div>
-            {isBusy && forms.length === 0 && totalVarieties > 0 && (
+            {isBusy && uniqueForms.length === 0 && totalVarieties > 1 && (
                 <span className={styles.loadingHint}>Cargando formas...</span>
             )}
         </div>
