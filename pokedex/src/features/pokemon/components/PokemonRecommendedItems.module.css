@@ -1,0 +1,151 @@
+.wrapper {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 14px 18px;
+    border: none;
+    background: var(--card);
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.toggle:hover {
+    background: var(--border);
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent, #e74c3c);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    padding: 0 6px;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+.arrow {
+    transition: transform 0.2s;
+    font-size: 0.8rem;
+}
+
+.arrowOpen {
+    transform: rotate(180deg);
+}
+
+.content {
+    padding: 0 18px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.hint {
+    margin: 0;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    font-style: italic;
+}
+
+.itemRow {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 12px;
+    background: var(--bg, #f9f9f9);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+}
+
+.itemHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.position {
+    font-size: 0.75rem;
+    font-weight: 700;
+    opacity: 0.5;
+    min-width: 22px;
+}
+
+.itemSprite {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    flex-shrink: 0;
+}
+
+.itemFallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--border);
+    color: var(--text);
+    font-size: 0.65rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.itemInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.itemName {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.itemId {
+    font-size: 0.7rem;
+    opacity: 0.5;
+    text-transform: lowercase;
+}
+
+.reason {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+    .itemSprite {
+        width: 28px;
+        height: 28px;
+    }
+    .itemFallback {
+        width: 28px;
+        height: 28px;
+        font-size: 0.6rem;
+    }
+    .itemName {
+        font-size: 0.9rem;
+    }
+    .reason {
+        font-size: 0.8rem;
+    }
+}

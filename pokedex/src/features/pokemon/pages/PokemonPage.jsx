@@ -12,6 +12,7 @@ import PokemonAbilities from "../components/PokemonAbilities";
 import PokemonMoves from "../components/PokemonMoves";
 import PokemonEvolutions from "../components/PokemonEvolutions";
 import PokemonFormSwitcher from "../components/PokemonFormSwitcher";
+import PokemonRecommendedItems from "../components/PokemonRecommendedItems";
 import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
 import styles from "./PokemonPage.module.css";
@@ -201,6 +202,14 @@ export default function PokemonPage() {
 
                 <div className={styles.section}>
                     <PokemonMoves moves={displayPokemon.moves} />
+                </div>
+
+                <div className={styles.section}>
+                    <PokemonRecommendedItems
+                        pokemonName={speciesName}
+                        types={displayPokemon.types}
+                        stats={displayPokemon.stats}
+                    />
                 </div>
 
                 <div className={styles.section}>
