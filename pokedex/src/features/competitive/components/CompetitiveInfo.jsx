@@ -55,13 +55,18 @@ const CompetitiveInfo = memo(function CompetitiveInfo({ pokemonName }) {
         );
     }
 
-    // --- Estado: Pokémon no encontrado ---
+    // --- Estado: Pokémon no encontrado en ningún tier ---
     if (!pokemon) {
         return (
             <div className={styles.wrapper}>
                 <div className={styles.notFound}>
                     No se encontraron datos competitivos para{" "}
-                    <strong>{pokemonName}</strong> en OU (2024-05).
+                    <strong>{pokemonName}</strong> en OU, UU ni RU (2024-05).
+                    <br />
+                    <span className={styles.notFoundHint}>
+                        Este Pokémon no tuvo suficiente uso en ninguno de estos
+                        tiers ese mes.
+                    </span>
                 </div>
             </div>
         );
@@ -201,7 +206,14 @@ const CompetitiveInfo = memo(function CompetitiveInfo({ pokemonName }) {
             </table>
             <p className={styles.source}>
                 Basado en datos de uso real de{" "}
-                <strong>OU (OverUsed) — Mayo 2024</strong> · Fuente:{" "}
+                <strong>{pokemon._tier || "OU (OverUsed)"} — Mayo 2024</strong>
+                .&nbsp;
+                {pokemon._tier && pokemon._tierId !== "ou" && (
+                    <span className={styles.sourceHint}>
+                        (no se encontraron datos en OU para este Pokémon)
+                    </span>
+                )}
+                · Fuente:{" "}
                 <a
                     href="https://www.smogon.com/dex/sv/pokemon/"
                     target="_blank"

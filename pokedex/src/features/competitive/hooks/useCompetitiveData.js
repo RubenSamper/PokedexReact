@@ -1,47 +1,104 @@
 import { useQuery } from "@tanstack/react-query";
-import { getBestCompetitiveData } from "../utils/competitiveData";
+import { getTierData } from "../utils/competitiveData";
+
+/**
+ * Tiers a consultar en orden de preferencia.
+ * @type {Array<{id: string, label: string}>}
+ */
+const TIERS = [
+    { id: "ou", label: "OU (OverUsed)" },
+    { id: "uu", label: "UU (UnderUsed)" },
+    { id: "ru", label: "RU (RarelyUsed)" },
+];
+
+/**
+ * Normaliza un nombre de Pokémon para comparación:
+ * quita caracteres no alfanuméricos y pasa a minúsculas.
+ * Ej: "Mr. Mime" → "mrmime", "mr-mime" → "mrmime"
+ * @param {string} s
+ * @returns {string}
+ */
+function normalize(s) {
+    return s.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+/**
+ * Busca un Pokémon en los datos de un tier.
+ * @param {Object} tierData - Datos del tier (clave → entry)
+ * @param {string} normalizedInput - Nombre normalizado a buscar
+ * @param {string} tierLabel - Etiqueta del tier
+ * @returns {Object|null} Datos del Pokémon con _tier, o null
+ */
+function findInTier(tierData, normalizedInput, tierLabel, tierId) {
+    if (!tierData) return null;
+    const key = Object.keys(tierData).find(
+        (k) => normalize(k) === normalizedInput
+    );
+    if (key) {
+        return { ...tierData[key], _tier: tierLabel, _tierId: tierId };
+    }
+    return null;
+}
 
 /**
  * useCompetitiveData
  *
- * Obtiene los datos competitivos de todos los Pokémon desde Smogon y devuelve
- * solo la información del Pokémon solicitado.
+ * Obtiene los datos competitivos de un Pokémon buscando en varios tiers
+ * de Smogon (OU → UU → RU) y devuelve la información del primero donde
+ * aparezca, junto con la etiqueta del tier en _tier.
  *
- * @param {string} pokemonName - Nombre del Pokémon (ej. "Garchomp", "Pikachu").
+ * @param {string} pokemonName - Nombre del Pokémon (ej. "Garchomp", "Nidoking").
  * @returns {{ data: object|null, isLoading: boolean, isError: boolean, error: Error|null }}
- *
- * @example
- * const { data, isLoading, isError } = useCompetitiveData("Garchomp");
- * // data => { bestAbility: "roughskin", bestItem: "rockyhelmet", ... }
  */
 export function useCompetitiveData(pokemonName) {
-    const {
-        data: fullData,
-        isLoading,
-        isError,
-        error,
-    } = useQuery({
-        queryKey: ["competitiveData", "2024-05-ou"],
-        queryFn: getBestCompetitiveData,
-        staleTime: 1000 * 60 * 60, // 1 hora - los datos cambian una vez al mes
-        gcTime: 1000 * 60 * 60 * 24, // mantener en caché 24h
+    const normalizedInput = normalize(pokemonName || "");
+
+    // ─── OU ───────────────────────────────────────────────────────────
+    const ouQuery = useQuery({
+        queryKey: ["competitiveTier", "2024-05", "ou"],
+        queryFn: () => getTierData("ou"),
+        staleTime: 1000 * 60 * 60,
+        gcTime: 1000 * 60 * 60 * 24,
         enabled: !!pokemonName,
     });
 
-    // Filtrado fuera de select para evitar problemas de clausura con React Query
-    let data = null;
-    if (fullData && pokemonName) {
-        // Normaliza nombres quitando todo lo no alfanumérico
-        // para que "mr-mime" ↔ "Mr. Mime", "farfetchd" ↔ "Farfetch'd", etc.
-        const normalize = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
-        const normalizedInput = normalize(pokemonName);
-        const key = Object.keys(fullData).find(
-            (k) => normalize(k) === normalizedInput
-        );
-        if (key) {
-            data = fullData[key];
-        }
-    }
+    const foundInOU = ouQuery.data
+        ? findInTier(ouQuery.data, normalizedInput, TIERS[0].label, TIERS[0].id)
+        : null;
 
-    return { data, isLoading, isError, error };
+    // ─── UU (solo si OU no encontró) ─────────────────────────────────
+    const uuEnabled = !!pokemonName && !!ouQuery.data && !foundInOU;
+    const uuQuery = useQuery({
+        queryKey: ["competitiveTier", "2024-05", "uu"],
+        queryFn: () => getTierData("uu"),
+        staleTime: 1000 * 60 * 60,
+        gcTime: 1000 * 60 * 60 * 24,
+        enabled: uuEnabled,
+    });
+
+    const foundInUU = uuQuery.data
+        ? findInTier(uuQuery.data, normalizedInput, TIERS[1].label, TIERS[1].id)
+        : null;
+
+    // ─── RU (solo si UU no encontró) ──────────────────────────────────
+    const ruEnabled = uuEnabled && !!uuQuery.data && !foundInUU;
+    const ruQuery = useQuery({
+        queryKey: ["competitiveTier", "2024-05", "ru"],
+        queryFn: () => getTierData("ru"),
+        staleTime: 1000 * 60 * 60,
+        gcTime: 1000 * 60 * 60 * 24,
+        enabled: ruEnabled,
+    });
+
+    // ─── Combinar resultado ──────────────────────────────────────────
+    const data = foundInOU || foundInUU || null;
+
+    const isLoading =
+        ouQuery.isLoading ||
+        (ouQuery.isSuccess && !foundInOU && uuQuery.isLoading) ||
+        (uuQuery.isSuccess && !foundInOU && !foundInUU && ruQuery.isLoading);
+
+    const isError = ouQuery.isError;
+
+    return { data, isLoading, isError, error: ouQuery.error };
 }

@@ -1,21 +1,32 @@
 /**
- * getBestCompetitiveData
+ * getTierData
  *
- * Descarga y procesa el JSON de estadísticas competitivas de Smogon (OU,
- * 2024-05) y extrae, para cada Pokémon, la habilidad más usada, el objeto
- * más usado, la naturaleza más usada y los 4 movimientos más usados.
+ * Descarga y procesa el JSON de estadísticas competitivas de Smogon para el
+ * tier indicado (ej. "ou", "uu", "ru") del mes 2024-05 y extrae, para cada
+ * Pokémon, la habilidad más usada, el objeto más usado, la naturaleza más
+ * usada y los 10 movimientos más usados.
  *
+ * @param {string} tier - Código del tier ("ou", "uu", "ru", etc.)
  * @returns {Promise<Object.<string, {bestAbility: string, bestItem: string, topItems: Array<{name: string, count: number}>, bestNature: string, topMoves: string[]}>>}
  * @throws {Error} Si la descarga falla o la respuesta no es válida.
  */
 const WORKER_URL = "https://gentle-sea-9ea3.rubensampercruz123.workers.dev";
 
-export async function getBestCompetitiveData() {
-    // En desarrollo, Vite proxy redirige /smogon-stats/* a https://www.smogon.com/stats/*
-    // para evitar problemas de CORS. En producción se usa el Cloudflare Worker.
-    const SMOGON_URL = "https://www.smogon.com/stats/2024-05/chaos/gen9ou-0.json";
+const TIER_MAP = {
+    ou: { file: "gen9ou-0.json", label: "OU (OverUsed)" },
+    uu: { file: "gen9uu-0.json", label: "UU (UnderUsed)" },
+    ru: { file: "gen9ru-0.json", label: "RU (RarelyUsed)" },
+};
+
+export async function getTierData(tier = "ou") {
+    const tierInfo = TIER_MAP[tier];
+    if (!tierInfo) {
+        throw new Error(`Tier desconocido: "${tier}"`);
+    }
+
+    const SMOGON_URL = `https://www.smogon.com/stats/2024-05/chaos/${tierInfo.file}`;
     const url = import.meta.env.DEV
-        ? "/smogon-stats/2024-05/chaos/gen9ou-0.json"
+        ? `/smogon-stats/2024-05/chaos/${tierInfo.file}`
         : `${WORKER_URL}/api/smogon-stats?url=${encodeURIComponent(SMOGON_URL)}`;
 
     let response;

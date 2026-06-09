@@ -56,8 +56,15 @@ const SmogonRecommendedItems = memo(function SmogonRecommendedItems({
             {open && (
                 <div className={styles.content}>
                     <p className={styles.hint}>
-                        Objetos más equipados en OU según estadísticas de Smogon
-                        (mayo 2024).
+                        Objetos más equipados en{" "}
+                        {pokemon._tier || "OU (OverUsed)"} según estadísticas
+                        de Smogon (mayo 2024).
+                        {pokemon._tierId !== "ou" && (
+                            <span className={styles.hintNote}>
+                                {" "}
+                                (no hay datos en OU para este Pokémon)
+                            </span>
+                        )}
                     </p>
                     {topItems.map((item, i) => {
                         const apiName = itemSmogonToApi(item.name);
