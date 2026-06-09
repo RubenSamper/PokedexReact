@@ -12,7 +12,8 @@ import PokemonAbilities from "../components/PokemonAbilities";
 import PokemonMoves from "../components/PokemonMoves";
 import PokemonEvolutions from "../components/PokemonEvolutions";
 import PokemonFormSwitcher from "../components/PokemonFormSwitcher";
-import PokemonRecommendedItems from "../components/PokemonRecommendedItems";
+import SmogonRecommendedItems from "../../competitive/components/SmogonRecommendedItems";
+import CompetitiveInfo from "../../competitive/components/CompetitiveInfo";
 import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
 import styles from "./PokemonPage.module.css";
@@ -201,15 +202,15 @@ export default function PokemonPage() {
                 </div>
 
                 <div className={styles.section}>
-                    <PokemonMoves moves={displayPokemon.moves} />
+                    <CompetitiveInfo pokemonName={speciesName} />
                 </div>
 
                 <div className={styles.section}>
-                    <PokemonRecommendedItems
-                        pokemonName={speciesName}
-                        types={displayPokemon.types}
-                        stats={displayPokemon.stats}
-                    />
+                    <SmogonRecommendedItems pokemonName={speciesName} />
+                </div>
+
+                <div className={styles.section}>
+                    <PokemonMoves moves={displayPokemon.moves} />
                 </div>
 
                 <div className={styles.section}>

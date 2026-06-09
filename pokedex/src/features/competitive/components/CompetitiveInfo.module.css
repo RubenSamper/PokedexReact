@@ -1,0 +1,199 @@
+.wrapper {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    background: var(--card);
+    box-shadow: var(--shadow-sm);
+}
+
+.title {
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+/* --- Tabla de datos --- */
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.row {
+    border-bottom: 1px solid var(--border);
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+.label {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-muted, var(--text));
+    padding: 8px 12px 8px 0;
+    white-space: nowrap;
+    vertical-align: top;
+    width: 1px;
+}
+
+.value {
+    text-align: left;
+    font-size: 0.9rem;
+    color: var(--text);
+    padding: 8px 0;
+    line-height: 1.5;
+}
+
+/* --- Item (objeto) con sprite --- */
+
+.itemDisplay {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.itemSprite {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    flex-shrink: 0;
+}
+
+.itemFallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    background: var(--border);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted, var(--text));
+    flex-shrink: 0;
+}
+
+.itemName {
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+/* --- Lista de movimientos --- */
+
+.moveList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.moveItem {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.moveEs {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.moveEn {
+    font-size: 0.72rem;
+    color: var(--text-muted, var(--text));
+    opacity: 0.55;
+    font-family: monospace;
+}
+
+.moveLoading {
+    color: var(--text-muted, var(--text));
+    opacity: 0.7;
+}
+
+/* --- Estados vacíos --- */
+
+.loading,
+.error,
+.notFound {
+    padding: 24px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.loading {
+    color: var(--text-muted, var(--text));
+    opacity: 0.7;
+}
+
+.error {
+    color: var(--danger, #e53e3e);
+    font-weight: 500;
+}
+
+.notFound {
+    color: var(--text-muted, var(--text));
+    opacity: 0.8;
+}
+
+/* --- Fuente / nota al pie --- */
+
+.source {
+    margin: 12px 0 0;
+    font-size: 0.72rem;
+    color: var(--text-muted, var(--text));
+    opacity: 0.65;
+    text-align: right;
+    line-height: 1.4;
+}
+
+.source a {
+    color: var(--accent, var(--text));
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.source a:hover {
+    opacity: 0.8;
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 480px) {
+    .wrapper {
+        padding: 12px 14px;
+    }
+
+    .title {
+        font-size: 0.95rem;
+    }
+
+    .label,
+    .value {
+        font-size: 0.82rem;
+    }
+
+    .itemSprite {
+        width: 20px;
+        height: 20px;
+    }
+
+    .moveItem {
+        font-size: 0.82rem;
+    }
+}
+
+/* --- Accesibilidad --- */
+
+@media (prefers-reduced-motion: reduce) {
+    .wrapper {
+        transition: none;
+    }
+}

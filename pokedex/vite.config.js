@@ -7,6 +7,13 @@ export default defineConfig({
   base: '/PokedexReact/',
   server: {
     port: 5174,
+    proxy: {
+      "/smogon-stats": {
+        target: "https://www.smogon.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/smogon-stats/, "/stats"),
+      },
+    },
   },
   css: {
     postcss: './postcss.config.cjs',
