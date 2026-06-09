@@ -8,13 +8,15 @@
  * @returns {Promise<Object.<string, {bestAbility: string, bestItem: string, topItems: Array<{name: string, count: number}>, bestNature: string, topMoves: string[]}>>}
  * @throws {Error} Si la descarga falla o la respuesta no es válida.
  */
+const WORKER_URL = "https://gentle-sea-9ea3.rubensampercruz123.workers.dev";
+
 export async function getBestCompetitiveData() {
     // En desarrollo, Vite proxy redirige /smogon-stats/* a https://www.smogon.com/stats/*
-    // para evitar problemas de CORS. En producción se usa un proxy CORS público.
+    // para evitar problemas de CORS. En producción se usa el Cloudflare Worker.
     const SMOGON_URL = "https://www.smogon.com/stats/2024-05/chaos/gen9ou-0.json";
     const url = import.meta.env.DEV
         ? "/smogon-stats/2024-05/chaos/gen9ou-0.json"
-        : `https://corsproxy.io/?url=${encodeURIComponent(SMOGON_URL)}`;
+        : `${WORKER_URL}/api/smogon-stats?url=${encodeURIComponent(SMOGON_URL)}`;
 
     let response;
     try {
