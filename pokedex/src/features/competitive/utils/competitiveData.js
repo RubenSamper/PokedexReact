@@ -13,9 +13,18 @@
 const WORKER_URL = "https://gentle-sea-9ea3.rubensampercruz123.workers.dev";
 
 const TIER_MAP = {
-    ou: { file: "gen9ou-0.json", label: "OU (OverUsed)" },
-    uu: { file: "gen9uu-0.json", label: "UU (UnderUsed)" },
-    ru: { file: "gen9ru-0.json", label: "RU (RarelyUsed)" },
+    ou:              { file: "gen9ou-0.json",              label: "OU (OverUsed)" },
+    uu:              { file: "gen9uu-0.json",              label: "UU (UnderUsed)" },
+    ru:              { file: "gen9ru-0.json",              label: "RU (RarelyUsed)" },
+    nu:              { file: "gen9nu-0.json",              label: "NU (NeverUsed)" },
+    pu:              { file: "gen9pu-0.json",              label: "PU" },
+    zu:              { file: "gen9zu-0.json",              label: "ZU (ZeroUsed)" },
+    ubers:           { file: "gen9ubers-0.json",           label: "Ubers" },
+    doublesou:       { file: "gen9doublesou-0.json",       label: "Doubles OU" },
+    lc:              { file: "gen9lc-0.json",              label: "LC (Little Cup)" },
+    nationaldex:     { file: "gen9nationaldex-0.json",     label: "National Dex OU" },
+    nationaldexuu:   { file: "gen9nationaldexuu-0.json",   label: "National Dex UU" },
+    nationaldexubers:{ file: "gen9nationaldexubers-0.json",label: "National Dex Ubers" },
 };
 
 export async function getTierData(tier = "ou") {
