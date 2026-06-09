@@ -44,6 +44,20 @@ const CompetitiveInfo = memo(function CompetitiveInfo({ pokemonName }) {
         setBrokenItems((prev) => ({ ...prev, [name]: true }));
     }, []);
 
+    // EVs óptimos: filtrar solo los que tienen valor > 0 y ordenar por valor descendente
+    // NOTA: va ANTES de los early returns para respetar las reglas de los hooks.
+    const visibleEVs = useMemo(() => {
+        if (!pokemon?.bestEVs) return [];
+        return Object.entries(pokemon.bestEVs)
+            .filter(([, value]) => value > 0)
+            .sort(([, a], [, b]) => b - a)
+            .map(([stat, value]) => ({
+                stat,
+                value,
+                ...STAT_LABELS[stat] || { label: stat, color: "#999" },
+            }));
+    }, [pokemon?.bestEVs]);
+
     // --- Estado: cargando ---
     if (isLoading) {
         return (
@@ -104,19 +118,6 @@ const CompetitiveInfo = memo(function CompetitiveInfo({ pokemonName }) {
             .replace(/([a-z])([A-Z])/g, "$1 $2")
             .replace(/\b\w/g, (c) => c.toUpperCase())
         : null;
-
-    // EVs óptimos: filtrar solo los que tienen valor > 0 y ordenar por valor descendente
-    const visibleEVs = useMemo(() => {
-        if (!pokemon.bestEVs) return [];
-        return Object.entries(pokemon.bestEVs)
-            .filter(([, value]) => value > 0)
-            .sort(([, a], [, b]) => b - a)
-            .map(([stat, value]) => ({
-                stat,
-                value,
-                ...STAT_LABELS[stat] || { label: stat, color: "#999" },
-            }));
-    }, [pokemon.bestEVs]);
 
     return (
         <div className={styles.wrapper}>
