@@ -31,8 +31,12 @@ export function useCompetitiveData(pokemonName) {
     // Filtrado fuera de select para evitar problemas de clausura con React Query
     let data = null;
     if (fullData && pokemonName) {
+        // Normaliza nombres quitando todo lo no alfanumérico
+        // para que "mr-mime" ↔ "Mr. Mime", "farfetchd" ↔ "Farfetch'd", etc.
+        const normalize = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+        const normalizedInput = normalize(pokemonName);
         const key = Object.keys(fullData).find(
-            (k) => k.toLowerCase() === pokemonName.toLowerCase()
+            (k) => normalize(k) === normalizedInput
         );
         if (key) {
             data = fullData[key];
