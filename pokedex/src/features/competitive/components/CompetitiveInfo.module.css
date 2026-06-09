@@ -118,6 +118,56 @@
     opacity: 0.7;
 }
 
+/* --- Visualización de EVs --- */
+
+.evContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 200px;
+}
+
+.evBar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    line-height: 1.3;
+}
+
+.evLabel {
+    font-weight: 700;
+    min-width: 64px;
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    text-align: right;
+}
+
+.evTrack {
+    flex: 1;
+    height: 10px;
+    background: var(--border, #e2e8f0);
+    border-radius: 5px;
+    overflow: hidden;
+    min-width: 60px;
+}
+
+.evFill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+    min-width: 2px;
+}
+
+.evValue {
+    font-weight: 700;
+    font-size: 0.78rem;
+    min-width: 28px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+}
+
 /* --- Estados vacíos --- */
 
 .loading,
@@ -198,6 +248,25 @@
 
     .moveItem {
         font-size: 0.82rem;
+    }
+
+    .evContainer {
+        min-width: unset;
+    }
+
+    .evLabel {
+        min-width: 52px;
+        font-size: 0.72rem;
+    }
+
+    .evTrack {
+        min-width: 40px;
+        height: 8px;
+    }
+
+    .evValue {
+        font-size: 0.72rem;
+        min-width: 22px;
     }
 }
 

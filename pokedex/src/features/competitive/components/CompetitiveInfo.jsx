@@ -1,4 +1,4 @@
-import { memo, useState, useCallback } from "react";
+import { memo, useState, useCallback, useMemo } from "react";
 import { useCompetitiveData } from "../hooks/useCompetitiveData";
 import { useMoveTranslations } from "../hooks/useMoveTranslations";
 import {
@@ -8,6 +8,18 @@ import {
     natureToEs,
 } from "../utils/nameConverter";
 import styles from "./CompetitiveInfo.module.css";
+
+/**
+ * Mapa de estadísticas a nombres en español y colores representativos.
+ */
+const STAT_LABELS = {
+    hp:    { label: "PS",     color: "#ff0000" },
+    atk:   { label: "Ataque", color: "#f08030" },
+    def:   { label: "Defensa", color: "#f8d030" },
+    spatk: { label: "At. Esp.", color: "#6890f0" },
+    spdef: { label: "Def. Esp.", color: "#78c850" },
+    spe:   { label: "Velocidad", color: "#f85888" },
+};
 
 /**
  * CompetitiveInfo
@@ -93,6 +105,19 @@ const CompetitiveInfo = memo(function CompetitiveInfo({ pokemonName }) {
             .replace(/\b\w/g, (c) => c.toUpperCase())
         : null;
 
+    // EVs óptimos: filtrar solo los que tienen valor > 0 y ordenar por valor descendente
+    const visibleEVs = useMemo(() => {
+        if (!pokemon.bestEVs) return [];
+        return Object.entries(pokemon.bestEVs)
+            .filter(([, value]) => value > 0)
+            .sort(([, a], [, b]) => b - a)
+            .map(([stat, value]) => ({
+                stat,
+                value,
+                ...STAT_LABELS[stat] || { label: stat, color: "#999" },
+            }));
+    }, [pokemon.bestEVs]);
+
     return (
         <div className={styles.wrapper}>
             <h3 className={styles.title}>
@@ -154,6 +179,44 @@ const CompetitiveInfo = memo(function CompetitiveInfo({ pokemonName }) {
                             {pokemon.bestNature
                                 ? natureToEs(pokemon.bestNature)
                                 : "\u2014"}
+                        </td>
+                    </tr>
+
+                    {/* EVs óptimos */}
+                    <tr className={styles.row}>
+                        <th className={styles.label}>EVs</th>
+                        <td className={styles.value}>
+                            {visibleEVs.length > 0 ? (
+                                <div className={styles.evContainer}>
+                                    {visibleEVs.map(({ stat, value, label, color }) => (
+                                        <div
+                                            key={stat}
+                                            className={styles.evBar}
+                                        >
+                                            <span
+                                                className={styles.evLabel}
+                                                style={{ color }}
+                                            >
+                                                {label}
+                                            </span>
+                                            <div className={styles.evTrack}>
+                                                <div
+                                                    className={styles.evFill}
+                                                    style={{
+                                                        width: `${(value / 252) * 100}%`,
+                                                        backgroundColor: color,
+                                                    }}
+                                                />
+                                            </div>
+                                            <span className={styles.evValue}>
+                                                {value}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                "\u2014"
+                            )}
                         </td>
                     </tr>
 
