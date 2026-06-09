@@ -6,15 +6,18 @@ import { getTierData } from "../utils/competitiveData";
  * @type {Array<{id: string, label: string}>}
  */
 const TIERS = [
-    { id: "ou",           label: "OU (OverUsed)" },
-    { id: "uu",           label: "UU (UnderUsed)" },
-    { id: "ru",           label: "RU (RarelyUsed)" },
-    { id: "nu",           label: "NU (NeverUsed)" },
-    { id: "pu",           label: "PU" },
-    { id: "zu",           label: "ZU (ZeroUsed)" },
-    { id: "ubers",        label: "Ubers" },
-    { id: "doublesou",    label: "Doubles OU" },
-    { id: "lc",           label: "LC (Little Cup)" },
+    { id: "ou",                   label: "OU (OverUsed)" },
+    { id: "uu",                   label: "UU (UnderUsed)" },
+    { id: "ru",                   label: "RU (RarelyUsed)" },
+    { id: "nu",                   label: "NU (NeverUsed)" },
+    { id: "pu",                   label: "PU" },
+    { id: "zu",                   label: "ZU (ZeroUsed)" },
+    { id: "ubers",                label: "Ubers" },
+    { id: "doublesou",            label: "Doubles OU" },
+    { id: "lc",                   label: "LC (Little Cup)" },
+    { id: "nationaldex",          label: "National Dex OU" },
+    { id: "nationaldexuu",        label: "National Dex UU" },
+    { id: "nationaldexubers",     label: "National Dex Ubers" },
 ];
 
 /**

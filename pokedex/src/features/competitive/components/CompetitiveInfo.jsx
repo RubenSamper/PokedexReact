@@ -62,7 +62,8 @@ const CompetitiveInfo = memo(function CompetitiveInfo({ pokemonName }) {
                 <div className={styles.notFound}>
                     No se encontraron datos competitivos para{" "}
                     <strong>{pokemonName}</strong> en ningún tier disponible
-                    (OU, UU, RU, NU, PU, ZU, Ubers, Doubles OU, LC — 2024-05).
+                    (OU, UU, RU, NU, PU, ZU, Ubers, Doubles OU, LC,
+                    National Dex — 2024-05).
                     <br />
                     <span className={styles.notFoundHint}>
                         Este Pokémon no tuvo suficiente uso en ninguno de estos
