@@ -160,6 +160,13 @@ export default function Layout({ children }) {
                         </button>
                     );
                 })}
+                <button
+                    className={styles.bottomNavTheme}
+                    onClick={() => setDark((d) => !d)}
+                    aria-label="Cambiar tema"
+                >
+                    {dark ? <BiSun size={20} color="white" /> : <BiMoon size={20} />}
+                </button>
             </nav>
         </div>
     );
