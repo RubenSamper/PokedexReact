@@ -51,6 +51,10 @@ export default function PokemonWeaknesses({ types }) {
 
             <hr className={styles.divider} />
 
+            {(superEffective.length > 0 || notVeryEffective.length > 0 || noEffect.length > 0) && (
+                <h3 className={styles.offensiveSectionTitle}>Daño ofensivo</h3>
+            )}
+
             {superEffective.length > 0 && (
                 <div className={styles.group}>
                     <h3 className={styles.offensiveTitle}>Hace mucho daño a</h3>

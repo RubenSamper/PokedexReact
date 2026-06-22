@@ -52,6 +52,15 @@
     margin: 4px 0;
 }
 
+.offensiveSectionTitle {
+    margin: 0 0 2px 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #e74c3c;
+}
+
 .offensiveTitle {
     margin: 0;
     font-size: 0.85rem;
