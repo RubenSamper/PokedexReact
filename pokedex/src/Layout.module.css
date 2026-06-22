@@ -10,6 +10,7 @@
     align-items: center;
     gap: 12px;
     padding: 12px 20px;
+    padding-top: calc(40px + env(safe-area-inset-top, 0px));
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
@@ -78,11 +79,14 @@
 
 .main {
     padding: 20px;
+    /* Evita que el header sticky tape el contenido al hacer scroll */
+    padding-top: calc(env(safe-area-inset-top, 0px) + 96px);
 }
 
 @media (max-width: 600px) {
     .main {
         padding: 12px;
+        padding-top: calc(env(safe-area-inset-top, 0px) + 92px);
     }
     .header {
         padding: 10px 12px;
@@ -116,10 +120,13 @@
     left: -280px;
     width: 260px;
     height: 100vh;
+    height: calc(100vh - env(safe-area-inset-bottom, 0px));
     background: var(--card);
     border-right: 1px solid var(--border);
     z-index: 300;
     padding: 20px;
+    padding-top: calc(20px + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -201,6 +208,93 @@
 
 .drawerItem svg {
     flex-shrink: 0;
+}
+
+/* ── Bottom nav (solo móvil) ── */
+.bottomNav {
+    display: none;
+}
+
+.bottomNavTheme {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    /* Ocultar hamburguesa y theme toggle del header en móvil */
+    .hamburger {
+        display: none;
+    }
+    .themeToggle {
+        display: none;
+    }
+
+    .bottomNav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--card);
+        border-top: 1px solid var(--border);
+        z-index: 100;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        height: calc(56px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .bottomNavItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 6px 10px;
+        border: none;
+        background: transparent;
+        color: var(--text-muted);
+        cursor: pointer;
+        border-radius: 8px;
+        transition: color 0.15s;
+        flex: 1;
+        max-width: 64px;
+    }
+
+    .bottomNavItemActive {
+        color: var(--accent);
+    }
+
+    .bottomNavLabel {
+        font-size: 0.6rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .bottomNavTheme {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: var(--text-muted);
+        cursor: pointer;
+        border-radius: 999px;
+        flex-shrink: 0;
+        transition: color 0.15s, background 0.15s;
+        margin-right: 4px;
+    }
+
+    .bottomNavTheme:hover {
+        background: var(--hover-bg);
+        color: var(--text);
+    }
+
+    /* Padding extra abajo para que el contenido no quede tras el bottom nav */
+    .main {
+        padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+    }
 }
 
 

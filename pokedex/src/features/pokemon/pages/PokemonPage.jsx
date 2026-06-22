@@ -184,6 +184,7 @@ export default function PokemonPage() {
                     <PokemonEvolutions
                         evolutionChainUrl={displayPokemon.evolutionChainUrl}
                         currentId={displayPokemon.id}
+                        currentFormName={displayPokemon.name}
                     />
                 </div>
 

@@ -23,5 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
-# Capacitor (Android project - only tracked in feature/mobile-capacitor)
-android/
+# Capacitor - Android project (tracked, but ignore build artifacts)
+android/.gradle/
+android/**/build/
+android/local.properties
+android/captures/
+android/.externalNativeBuild/
