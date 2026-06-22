@@ -3,8 +3,22 @@ import { BiChevronRight } from "react-icons/bi";
 import { useEvolutionChain, formatEvolutionDetail } from "../hooks/useEvolutionChain";
 import styles from "./PokemonEvolutions.module.css";
 
-export default function PokemonEvolutions({ evolutionChainUrl, currentId }) {
-    const { data: chain = [], isLoading, isError } = useEvolutionChain(evolutionChainUrl);
+/**
+ * Formatea el nombre: "vulpix-alola" → "Vulpix (Alola)", "charizard" → "Charizard"
+ */
+function formatPokemonName(name) {
+    // Detectar sufijo regional
+    const regionalMatch = name.match(/^(.+)-(alola|galar|hisui|paldea)$/);
+    if (regionalMatch) {
+        const base = regionalMatch[1].charAt(0).toUpperCase() + regionalMatch[1].slice(1);
+        const region = regionalMatch[2].charAt(0).toUpperCase() + regionalMatch[2].slice(1);
+        return `${base} (${region})`;
+    }
+    return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
+export default function PokemonEvolutions({ evolutionChainUrl, currentId, currentFormName }) {
+    const { data: chain = [], isLoading, isError } = useEvolutionChain(evolutionChainUrl, currentFormName);
 
     const hasChain = !isLoading && !isError && chain.length > 1;
 
@@ -39,8 +53,7 @@ export default function PokemonEvolutions({ evolutionChainUrl, currentId }) {
                                 decoding="async"
                             />
                             <span className={styles.pokeName}>
-                                {pokemon.name.charAt(0).toUpperCase() +
-                                    pokemon.name.slice(1)}
+                                {formatPokemonName(pokemon.name)}
                             </span>
                             <span className={styles.pokeNum}>
                                 #{String(pokemon.id).padStart(3, "0")}
