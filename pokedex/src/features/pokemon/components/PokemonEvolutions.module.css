@@ -10,23 +10,52 @@
     margin: 0;
 }
 
-/* ---- Cadena evolutiva ---- */
+/* ---- Cadena evolutiva (por niveles) ---- */
 
-.chain {
+.level {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 4px;
+}
+
+.levelArrows {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.arrowCol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    min-width: 100px;
+}
+
+.arrowLabel {
+    font-size: 0.7rem;
+    color: var(--text);
+    opacity: 0.7;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.arrowSymbol {
+    font-size: 1rem;
+    opacity: 0.4;
+    line-height: 1;
+}
+
+.levelPokemon {
+    display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 8px;
 }
 
-.step {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.pokemon {
+.pokeCard {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,7 +70,7 @@
     min-width: 100px;
 }
 
-.pokemon:hover {
+.pokeCard:hover {
     transform: translateY(-2px);
     border-color: var(--border);
 }
@@ -66,27 +95,6 @@
 .pokeNum {
     font-size: 0.7rem;
     opacity: 0.5;
-}
-
-.arrow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-    min-width: 40px;
-}
-
-.arrowLabel {
-    font-size: 0.7rem;
-    color: var(--text);
-    opacity: 0.7;
-    text-align: center;
-    white-space: nowrap;
-}
-
-.arrowSymbol {
-    font-size: 1.2rem;
-    opacity: 0.4;
 }
 
 /* ---- Formas alternativas ---- */

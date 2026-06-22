@@ -52,10 +52,14 @@ function detectRegionalSuffix(formName) {
 }
 
 /**
- * Parsea la cadena evolutiva de PokeAPI y la aplana en una lista.
+ * Parsea la cadena evolutiva de PokeAPI y devuelve una estructura por niveles.
+ * 
+ * Devuelve { levels, connections } donde:
+ * - levels[n] = array de Pokémon en la generación n (0 = base)
+ * - connections = [{ from: idParent, to: idChild, details }]
+ * 
  * Si se proporciona un formName con sufijo regional (ej: "vulpix-alola"),
- * mapea cada evolución a su correspondiente variante regional.
- * Los nombres de objetos se traducen al español.
+ * filtra solo las ramas relevantes y mapea a las variantes regionales.
  */
 async function fetchEvolutionChain(evolutionChainUrl, formName) {
     const res = await fetch(evolutionChainUrl);
@@ -63,37 +67,92 @@ async function fetchEvolutionChain(evolutionChainUrl, formName) {
     const data = await res.json();
 
     const regionalSuffix = detectRegionalSuffix(formName);
-    const flat = [];
 
-    function walk(node, details) {
+    // 1. Construir árbol con niveles y conexiones
+    const levels = [];
+    const connections = [];
+
+    function walkTree(node, depth) {
         const id = parseInt(
             node.species.url.split("/").filter(Boolean).pop(),
             10
         );
-        const baseName = node.species.name;
 
-        flat.push({
+        // Asegurar que existe el nivel
+        if (!levels[depth]) levels[depth] = [];
+        levels[depth].push({
             id,
-            name: baseName,
-            details: details
-                ? {
-                      trigger: details.trigger?.name || null,
-                      minLevel: details.min_level || null,
-                      item: details.item?.name || null,
-                      itemEs: null,
-                  }
-                : null,
+            name: node.species.name,
+            details: null, // el detalle se asigna al HIJO, no al padre
         });
+
+        // ── Filtrar ramas para variantes regionales ──
+        // Dos pases:
+        // 1º: detectar si alguna rama tiene base_form que coincida con la forma actual
+        // 2º: si hay coincidencias, excluir ramas sin base_form (genéricas)
+        let hasMatchingBaseForm = false;
+
+        if (regionalSuffix) {
+            for (const child of node.evolves_to) {
+                const childDetails = child.evolution_details?.[0] || null;
+                if (childDetails?.base_form?.name === formName) {
+                    hasMatchingBaseForm = true;
+                    break;
+                }
+            }
+        }
+
         for (const child of node.evolves_to) {
-            walk(child, child.evolution_details?.[0] || null);
+            const childDetails = child.evolution_details?.[0] || null;
+
+            // Filtrar según la forma regional
+            if (regionalSuffix) {
+                if (childDetails?.base_form) {
+                    // Rama con restricción de forma: solo si coincide con la actual
+                    if (childDetails.base_form.name !== formName) continue;
+                } else {
+                    // Rama genérica (sin base_form): excluir si hay otra rama que ya gestiona esta forma
+                    if (hasMatchingBaseForm) continue;
+                }
+            }
+
+            const childId = parseInt(
+                child.species.url.split("/").filter(Boolean).pop(),
+                10
+            );
+
+            connections.push({
+                from: id,
+                to: childId,
+                details: childDetails ? {
+                    trigger: childDetails.trigger?.name || null,
+                    minLevel: childDetails.min_level || null,
+                    item: childDetails.item?.name || null,
+                    itemEs: null,
+                } : null,
+            });
+
+            walkTree(child, depth + 1);
         }
     }
 
-    walk(data.chain, null);
+    walkTree(data.chain, 0);
 
-    // Si estamos viendo una variante regional, mapear las evoluciones
+    // Asignar detalles a cada Pokémon desde las conexiones
+    // (cada Pokémon en levels[n>0] tiene su detalle en la connection que llega a él)
+    for (const conn of connections) {
+        for (let d = 1; d < levels.length; d++) {
+            const found = levels[d].find(p => p.id === conn.to);
+            if (found) {
+                found.details = conn.details;
+            }
+        }
+    }
+
+    // 2. Si estamos viendo variante regional, mapear nombres e ids
     if (regionalSuffix) {
-        await Promise.all(flat.map(async (evo) => {
+        const allPokemon = levels.flat();
+        await Promise.all(allPokemon.map(async (evo) => {
             const variantName = `${evo.name}-${regionalSuffix}`;
             const variantData = await fetchPokemonData(variantName);
             if (variantData) {
@@ -104,18 +163,17 @@ async function fetchEvolutionChain(evolutionChainUrl, formName) {
         }));
     }
 
-    // Traducir nombres de objetos a español
-    const itemEntries = flat.filter((e) => e.details?.item);
+    // 3. Traducir nombres de objetos a español
+    const allDetails = connections.map(c => c.details).filter(Boolean);
+    const itemEntries = allDetails.filter(d => d?.item);
     if (itemEntries.length > 0) {
         const translations = await Promise.all(
-            itemEntries.map((e) => fetchItemSpanishName(e.details.item))
+            itemEntries.map((d) => fetchItemSpanishName(d.item))
         );
-        itemEntries.forEach(
-            (e, i) => (e.details.itemEs = translations[i])
-        );
+        itemEntries.forEach((d, i) => (d.itemEs = translations[i]));
     }
 
-    return flat;
+    return { levels, connections };
 }
 
 export function useEvolutionChain(evolutionChainUrl, formName) {
