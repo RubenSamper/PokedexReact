@@ -10,7 +10,7 @@
     align-items: center;
     gap: 12px;
     padding: 12px 20px;
-    padding-top: calc(12px + env(safe-area-inset-top, 0px));
+    padding-top: calc(40px + env(safe-area-inset-top, 0px));
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
@@ -80,13 +80,13 @@
 .main {
     padding: 20px;
     /* Evita que el header sticky tape el contenido al hacer scroll */
-    padding-top: calc(env(safe-area-inset-top, 0px) + 68px);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 96px);
 }
 
 @media (max-width: 600px) {
     .main {
         padding: 12px;
-        padding-top: calc(env(safe-area-inset-top, 0px) + 64px);
+        padding-top: calc(env(safe-area-inset-top, 0px) + 92px);
     }
     .header {
         padding: 10px 12px;
