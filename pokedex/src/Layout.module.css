@@ -210,4 +210,57 @@
     flex-shrink: 0;
 }
 
+/* ── Bottom nav (solo móvil) ── */
+.bottomNav {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .bottomNav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--card);
+        border-top: 1px solid var(--border);
+        z-index: 100;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        height: calc(56px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .bottomNavItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 6px 10px;
+        border: none;
+        background: transparent;
+        color: var(--text-muted);
+        cursor: pointer;
+        border-radius: 8px;
+        transition: color 0.15s;
+        flex: 1;
+        max-width: 72px;
+    }
+
+    .bottomNavItemActive {
+        color: var(--accent);
+    }
+
+    .bottomNavLabel {
+        font-size: 0.6rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    /* Padding extra abajo para que el contenido no quede tras el bottom nav */
+    .main {
+        padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+    }
+}
+
 

@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { BiSun, BiMoon, BiX, BiDiamond, BiHome, BiBarChartAlt, BiGrid, BiShield, BiBuildings, BiStar } from "react-icons/bi";
 import styles from "./Layout.module.css";
+
+const NAV_ITEMS = [
+    { path: "/", label: "Pokédex", icon: BiHome },
+    { path: "/compare", label: "Comparar", icon: BiBarChartAlt },
+    { path: "/favorites", label: "Favoritos", icon: BiStar },
+    { path: "/teams", label: "Equipos", icon: BiShield },
+    { path: "/shinies", label: "Shiny", icon: BiDiamond },
+];
 
 export default function Layout({ children }) {
     const [dark, setDark] = useState(() => {
@@ -14,6 +22,7 @@ export default function Layout({ children }) {
     });
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         document.documentElement.dataset.theme = dark ? "dark" : "light";
@@ -134,6 +143,24 @@ export default function Layout({ children }) {
             </aside>
 
             <main className={styles.main}>{children}</main>
+
+            {/* Barra de navegación inferior en móvil */}
+            <nav className={styles.bottomNav}>
+                {NAV_ITEMS.map(({ path, label, icon: Icon }) => {
+                    const isActive = location.pathname === path;
+                    return (
+                        <button
+                            key={path}
+                            className={`${styles.bottomNavItem} ${isActive ? styles.bottomNavItemActive : ""}`}
+                            onClick={() => navigate(path)}
+                            aria-label={label}
+                        >
+                            <Icon size={22} />
+                            <span className={styles.bottomNavLabel}>{label}</span>
+                        </button>
+                    );
+                })}
+            </nav>
         </div>
     );
 }
