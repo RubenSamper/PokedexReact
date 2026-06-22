@@ -86,34 +86,31 @@ async function fetchEvolutionChain(evolutionChainUrl, formName) {
             details: null, // el detalle se asigna al HIJO, no al padre
         });
 
-        // ── Filtrar ramas para variantes regionales ──
+        // ── Filtrar ramas según la forma actual ──
+        // Algunas evoluciones requieren una forma específica (base_form).
         // Dos pases:
         // 1º: detectar si alguna rama tiene base_form que coincida con la forma actual
         // 2º: si hay coincidencias, excluir ramas sin base_form (genéricas)
         let hasMatchingBaseForm = false;
 
-        if (regionalSuffix) {
-            for (const child of node.evolves_to) {
-                const childDetails = child.evolution_details?.[0] || null;
-                if (childDetails?.base_form?.name === formName) {
-                    hasMatchingBaseForm = true;
-                    break;
-                }
+        for (const child of node.evolves_to) {
+            const childDetails = child.evolution_details?.[0] || null;
+            if (childDetails?.base_form?.name === formName) {
+                hasMatchingBaseForm = true;
+                break;
             }
         }
 
         for (const child of node.evolves_to) {
             const childDetails = child.evolution_details?.[0] || null;
 
-            // Filtrar según la forma regional
-            if (regionalSuffix) {
-                if (childDetails?.base_form) {
-                    // Rama con restricción de forma: solo si coincide con la actual
-                    if (childDetails.base_form.name !== formName) continue;
-                } else {
-                    // Rama genérica (sin base_form): excluir si hay otra rama que ya gestiona esta forma
-                    if (hasMatchingBaseForm) continue;
-                }
+            if (childDetails?.base_form) {
+                // Rama con restricción de forma: solo si coincide con la actual
+                if (childDetails.base_form.name !== formName) continue;
+            } else {
+                // Rama genérica (sin base_form):
+                // si hay otra rama que gestiona específicamente esta forma, excluirla
+                if (hasMatchingBaseForm) continue;
             }
 
             const childId = parseInt(
@@ -152,15 +149,25 @@ async function fetchEvolutionChain(evolutionChainUrl, formName) {
     // 2. Si estamos viendo variante regional, mapear nombres e ids
     if (regionalSuffix) {
         const allPokemon = levels.flat();
+        const idMap = {}; // species_id → form_id
         await Promise.all(allPokemon.map(async (evo) => {
             const variantName = `${evo.name}-${regionalSuffix}`;
             const variantData = await fetchPokemonData(variantName);
             if (variantData) {
+                idMap[evo.id] = variantData.id;
                 evo.id = variantData.id;
                 evo.name = variantData.name;
                 evo.isRegional = true;
+            } else {
+                idMap[evo.id] = evo.id;
             }
         }));
+
+        // Actualizar conexiones con los nuevos IDs
+        for (const conn of connections) {
+            conn.from = idMap[conn.from] || conn.from;
+            conn.to = idMap[conn.to] || conn.to;
+        }
     }
 
     // 3. Traducir nombres de objetos a español
