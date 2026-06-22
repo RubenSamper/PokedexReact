@@ -4,10 +4,10 @@
  * Descarga y procesa el JSON de estadísticas competitivas de Smogon para el
  * tier indicado (ej. "ou", "uu", "ru") del mes 2024-05 y extrae, para cada
  * Pokémon, la habilidad más usada, el objeto más usado, la naturaleza más
- * usada, los EVs óptimos y los 10 movimientos más usados.
+ * usada y los 10 movimientos más usados.
  *
  * @param {string} tier - Código del tier ("ou", "uu", "ru", etc.)
- * @returns {Promise<Object.<string, {bestAbility: string, bestItem: string, topItems: Array<{name: string, count: number}>, bestNature: string, bestEVs: Object.<string, number>, topMoves: string[]}>>}
+ * @returns {Promise<Object.<string, {bestAbility: string, bestItem: string, topItems: Array<{name: string, count: number}>, bestNature: string, topMoves: string[]}>>}
  * @throws {Error} Si la descarga falla o la respuesta no es válida.
  */
 const WORKER_URL = "https://gentle-sea-9ea3.rubensampercruz123.workers.dev";
@@ -96,31 +96,14 @@ export async function getTierData(tier = "ou") {
             }
         }
 
-        // --- Naturaleza más usada + EVs óptimos ---
+        // --- Naturaleza más usada ---
         // Las spreads vienen en formato "Nature:EVs" (ej. "Jolly:0/252/0/0/4/252")
-        // donde los EVs siguen el orden: HP / ATK / DEF / SPATK / SPDEF / SPE
         if (data.Spreads && typeof data.Spreads === "object") {
             const entries = Object.entries(data.Spreads);
             if (entries.length > 0) {
                 entries.sort(([, a], [, b]) => b - a);
                 const topSpreadKey = entries[0][0];
-                const [nature, evString] = topSpreadKey.split(":");
-                entry.bestNature = nature;
-
-                // Parsear los EVs del spread más usado
-                if (evString) {
-                    const evParts = evString.split("/").map(Number);
-                    if (evParts.length === 6) {
-                        entry.bestEVs = {
-                            hp: evParts[0],
-                            atk: evParts[1],
-                            def: evParts[2],
-                            spatk: evParts[3],
-                            spdef: evParts[4],
-                            spe: evParts[5],
-                        };
-                    }
-                }
+                entry.bestNature = topSpreadKey.split(":")[0];
             }
         }
 
