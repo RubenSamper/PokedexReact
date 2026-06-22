@@ -10,6 +10,7 @@
     align-items: center;
     gap: 12px;
     padding: 12px 20px;
+    padding-top: calc(12px + env(safe-area-inset-top, 0px));
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
@@ -116,10 +117,13 @@
     left: -280px;
     width: 260px;
     height: 100vh;
+    height: calc(100vh - env(safe-area-inset-bottom, 0px));
     background: var(--card);
     border-right: 1px solid var(--border);
     z-index: 300;
     padding: 20px;
+    padding-top: calc(20px + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
     display: flex;
     flex-direction: column;
     gap: 20px;

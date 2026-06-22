@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { Capacitor } from "@capacitor/core";
 
 // Restaurar ruta después de redirección desde 404.html (GitHub Pages)
 function RedirectHandler({ children }) {
@@ -46,9 +47,20 @@ const SUSPENSE_FALLBACK = (
 );
 
 export default function App() {
+    useEffect(() => {
+        if (Capacitor.isNativePlatform()) {
+            // Configurar StatusBar para que se superponga al contenido (ya manejado con CSS safe-area)
+            import("@capacitor/status-bar").then(({ StatusBar }) => {
+                StatusBar.setOverlaysWebView({ overlay: true });
+                const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+                StatusBar.setStyle({ style: isDark ? "DARK" : "LIGHT" });
+            }).catch(() => {});
+        }
+    }, []);
+
     return (
         <FilterProvider>
-            <BrowserRouter basename="/PokedexReact">
+            <BrowserRouter basename={window.location.pathname.startsWith('/PokedexReact') ? '/PokedexReact' : '/'}>
                 <FavoritesProvider>
                     <ToastProvider>
                         <Layout>
