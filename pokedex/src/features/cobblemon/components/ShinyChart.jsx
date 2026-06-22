@@ -1,12 +1,12 @@
 import { useState, useMemo } from "react";
 import { BiDiamond } from "react-icons/bi";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
+import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from "chart.js";
+import { Bar } from "react-chartjs-2";
 import { usePlayers } from "../hooks/usePlayers";
 import { capitalize, getSpriteUrl, getSpeciesName } from "../utils/cobblemon";
 import styles from "./ShinyChart.module.css";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const CHART_COLORS = [
     "#FFD700", "#FFA500", "#FF6347", "#4CAF50", "#2196F3",
@@ -81,28 +81,49 @@ export default function ShinyChart({ players }) {
 
         const isDark = document.documentElement.dataset.theme === "dark";
 
-    return {
+        return {
             labels,
             datasets: [
                 {
                     data,
-                    backgroundColor: CHART_COLORS.slice(
-                        0,
-                        labels.length
-                    ),
+                    backgroundColor: labels.map((_, i) => {
+                        const color =
+                            CHART_COLORS[i % CHART_COLORS.length];
+                        if (
+                            selectedPlayer !== null &&
+                            i !== selectedPlayer
+                        ) {
+                            // Dim non-selected bars
+                            const r = parseInt(
+                                color.slice(1, 3),
+                                16
+                            );
+                            const g = parseInt(
+                                color.slice(3, 5),
+                                16
+                            );
+                            const b = parseInt(
+                                color.slice(5, 7),
+                                16
+                            );
+                            return `rgba(${r}, ${g}, ${b}, 0.3)`;
+                        }
+                        return color;
+                    }),
                     borderColor: isDark ? "#333" : "#fff",
-                    borderWidth: 2,
-                    hoverOffset: 8,
+                    borderWidth: 1,
+                    borderRadius: 4,
                 },
             ],
             shinyDetails,
         };
-    }, [players]);
+    }, [players, selectedPlayer]);
 
     const textMuted = cssVar("--text-muted", "#888");
     const options = {
         responsive: true,
         maintainAspectRatio: false,
+        indexAxis: "y",
         onClick: (event, elements) => {
             if (elements.length > 0) {
                 const idx = elements[0].index;
@@ -113,20 +134,45 @@ export default function ShinyChart({ players }) {
         },
         plugins: {
             legend: {
-                position: "bottom",
-                labels: {
-                    padding: 16,
-                    font: { size: 12 },
-                    color: textMuted,
-                },
+                display: false,
             },
             tooltip: {
                 callbacks: {
                     label: (ctx) => {
                         const label = ctx.label || "";
-                        const count = ctx.parsed || 0;
+                        const count = ctx.parsed.x || 0;
                         return `${label}: ${count} shiny`;
                     },
+                },
+            },
+        },
+        scales: {
+            x: {
+                beginAtZero: true,
+                ticks: {
+                    precision: 0,
+                    color: textMuted,
+                },
+                title: {
+                    display: true,
+                    text: "Cantidad",
+                    color: textMuted,
+                },
+                grid: {
+                    color: cssVar("--border", "#e0e0e0"),
+                },
+            },
+            y: {
+                ticks: {
+                    color: textMuted,
+                },
+                title: {
+                    display: true,
+                    text: "Jugador",
+                    color: textMuted,
+                },
+                grid: {
+                    display: false,
                 },
             },
         },
@@ -149,7 +195,7 @@ export default function ShinyChart({ players }) {
 
             <div className={styles.chartContainer}>
                 {totalShinies > 0 ? (
-                    <Doughnut data={chartData} options={options} />
+                    <Bar data={chartData} options={options} />
                 ) : (
                     <p className={styles.empty}>
                         No hay Pokémon shiny en el servidor

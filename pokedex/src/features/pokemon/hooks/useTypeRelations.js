@@ -23,9 +23,13 @@ export function useTypeRelations(types) {
     let weaknesses = [];
     let resistances = [];
     let immunities = [];
+    let superEffective = [];
+    let notVeryEffective = [];
+    let noEffect = [];
 
     if (!isLoading && !isError && results.length > 0) {
         const multipliers = {};
+        const offensiveMultipliers = {};
 
         for (const result of results) {
             const dr = result.data.damage_relations;
@@ -39,6 +43,16 @@ export function useTypeRelations(types) {
             for (const t of dr.no_damage_from) {
                 multipliers[t.name] = 0;
             }
+
+            for (const t of dr.double_damage_to) {
+                offensiveMultipliers[t.name] = (offensiveMultipliers[t.name] || 1) * 2;
+            }
+            for (const t of dr.half_damage_to) {
+                offensiveMultipliers[t.name] = (offensiveMultipliers[t.name] || 1) * 0.5;
+            }
+            for (const t of dr.no_damage_to) {
+                offensiveMultipliers[t.name] = 0;
+            }
         }
 
         for (const [type, mult] of Object.entries(multipliers)) {
@@ -47,9 +61,17 @@ export function useTypeRelations(types) {
             else if (mult < 1) resistances.push({ type, multiplier: mult });
         }
 
+        for (const [type, mult] of Object.entries(offensiveMultipliers)) {
+            if (mult === 0) noEffect.push(type);
+            else if (mult > 1) superEffective.push({ type, multiplier: mult });
+            else if (mult < 1) notVeryEffective.push({ type, multiplier: mult });
+        }
+
         weaknesses.sort((a, b) => b.multiplier - a.multiplier);
         resistances.sort((a, b) => a.multiplier - b.multiplier);
+        superEffective.sort((a, b) => b.multiplier - a.multiplier);
+        notVeryEffective.sort((a, b) => a.multiplier - b.multiplier);
     }
 
-    return { weaknesses, resistances, immunities, isLoading, isError };
+    return { weaknesses, resistances, immunities, superEffective, notVeryEffective, noEffect, isLoading, isError };
 }

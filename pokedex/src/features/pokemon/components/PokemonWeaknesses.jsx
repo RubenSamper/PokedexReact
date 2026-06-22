@@ -3,7 +3,7 @@ import PokemonTypeBadge from "./PokemonTypeBadge";
 import styles from "./PokemonWeaknesses.module.css";
 
 export default function PokemonWeaknesses({ types }) {
-    const { weaknesses, resistances, immunities, isLoading, isError } = useTypeRelations(types);
+    const { weaknesses, resistances, immunities, superEffective, notVeryEffective, noEffect, isLoading, isError } = useTypeRelations(types);
 
     if (isLoading) return <p className={styles.loading}>Cargando tipos…</p>;
     if (isError) return <p className={styles.loading}>Error al cargar tipos</p>;
@@ -43,6 +43,47 @@ export default function PokemonWeaknesses({ types }) {
                     <h3 className={styles.groupTitle}>Inmune a</h3>
                     <div className={styles.chips}>
                         {immunities.map((type) => (
+                            <PokemonTypeBadge key={type} type={type} />
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            <hr className={styles.divider} />
+
+            {superEffective.length > 0 && (
+                <div className={styles.group}>
+                    <h3 className={styles.offensiveTitle}>Hace mucho daño a</h3>
+                    <div className={styles.chips}>
+                        {superEffective.map((t) => (
+                            <span key={t.type} className={styles.chip}>
+                                <PokemonTypeBadge type={t.type} />
+                                <span className={styles.multiplier}>x{t.multiplier}</span>
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {notVeryEffective.length > 0 && (
+                <div className={styles.group}>
+                    <h3 className={styles.offensiveTitle}>Hace poco daño a</h3>
+                    <div className={styles.chips}>
+                        {notVeryEffective.map((t) => (
+                            <span key={t.type} className={styles.chip}>
+                                <PokemonTypeBadge type={t.type} />
+                                <span className={styles.multiplier}>x{t.multiplier}</span>
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {noEffect.length > 0 && (
+                <div className={styles.group}>
+                    <h3 className={styles.offensiveTitle}>No afecta a</h3>
+                    <div className={styles.chips}>
+                        {noEffect.map((type) => (
                             <PokemonTypeBadge key={type} type={type} />
                         ))}
                     </div>
