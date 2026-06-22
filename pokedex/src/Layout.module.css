@@ -79,11 +79,14 @@
 
 .main {
     padding: 20px;
+    /* Evita que el header sticky tape el contenido al hacer scroll */
+    padding-top: calc(env(safe-area-inset-top, 0px) + 68px);
 }
 
 @media (max-width: 600px) {
     .main {
         padding: 12px;
+        padding-top: calc(env(safe-area-inset-top, 0px) + 64px);
     }
     .header {
         padding: 10px 12px;
